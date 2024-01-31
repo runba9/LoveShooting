@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound01: {fileID: 8300000, guid: cea4b2c64bd86d54b97f583aced5998e, type: 3}
-  sound02: {fileID: 8300000, guid: ea09931532841d440bfe9b5318ffac7e, type: 3}
+  sound02: {fileID: 8300000, guid: bebd1af556ce8274a94affe5a1956362, type: 3}
   sound03: {fileID: 0}
   sound04: {fileID: 0}
   bulletClip: {fileID: 8300000, guid: c0b5fbd282599bc408a1ec6ae52693f1, type: 3}
@@ -65,7 +65,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

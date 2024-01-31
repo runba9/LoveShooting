@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgraundObsetacleScripts : MonoBehaviour
 {
+
     [SerializeField]
-    public GameObject Up;
-    [SerializeField]
-    public GameObject Down;
+    public GameObject FrontBackgraund;
 
     //スクロールスピード調整パラメータ
     [SerializeField]
@@ -19,18 +16,10 @@ public class BackgraundObsetacleScripts : MonoBehaviour
     void Update()
     {
         //左方向へ　Update　での経過時間をかけたスピードを加速
-        Down.transform.position += Vector3.left * (Time.deltaTime * _ScrollSpeed);
+        FrontBackgraund.transform.position += Vector3.left * (Time.deltaTime * _ScrollSpeed);
         //X座標が左の限界を超えた場合1画面分右に加算する
-        if (Down.transform.position.x < -_rightLimit)
-            Down.transform.position += Vector3.right * _rightLimit;
+        if (FrontBackgraund.transform.position.x < -_rightLimit)
+            FrontBackgraund.transform.position += Vector3.right * _rightLimit;
 
-        if (Down.transform.position.x < -_rightLimit)
-        {
-            //左方向へ　Update　での経過時間をかけたスピードを加速
-            Up.transform.position += Vector3.left * (Time.deltaTime * _ScrollSpeed);
-            //X座標が左の限界を超えた場合1画面分右に加算する
-            if (Up.transform.position.x < -_rightLimit)
-                Up.transform.position += Vector3.right * _rightLimit;
-        }
     }
 }

@@ -28,24 +28,24 @@ public class ScoreScripts : MonoBehaviour
     [SerializeField]
     public float blackmintScoreMax = 40f;       //エネミーをblackmintScoreMax回倒したらチョコミント障害物登場数
     [SerializeField]
-    public float BosenemyScoreMax = 70f;        //エネミーをBosenemyScoreMax回倒したらボス登場数
+    public float BossenemyScoreMax = 70f;        //エネミーをBossenemyScoreMax回倒したらボス登場数
 
     [SerializeField]
-    public int life = 3;            //プレイヤーの残機数
-    private int score = 0;            //現在のスコア
-    private float timerscore = 0;            //経過時間
+    public int life = 3;                        //プレイヤーの残機数
+    private int score = 0;                      //現在のスコア
+    private float timerscore = 0;               //経過時間
 
     //呼び出し
-    private GameObject SEgameObj;              //Unity上で作ったGameObjectである名前SEを入れる変数
-    private GameObject PlayerObj;              //Unity上で作ったGameObjectである名前PlayerObjを入れる変数
-    private GameObject BosgameObj;              //Unity上で作ったGameObjectである名前GameManagerを入れる変数
+    private GameObject SEgameObj;               //Unity上で作ったGameObjectである名前SEを入れる変数
+    private GameObject PlayerObj;               //Unity上で作ったGameObjectである名前PlayerObjを入れる変数
+    private GameObject BossgameObj;             //Unity上で作ったGameObjectである名前GameManagerを入れる変数
     public static ScoreScripts _scoreScripts;   //どこでもスクリプトを呼び出すため
 
     public void Start()
     {
         SEgameObj = GameObject.Find("SE");              //Unity上で作ったSEを取得
-        BosgameObj = GameObject.Find("GameManager");//Unity上で作ったGameManagerを取得
-        PlayerObj = GameObject.Find("GameManager");//Unity上で作ったGameManagerを取得
+        BossgameObj = GameObject.Find("GameManager");   //Unity上で作ったGameManagerを取得
+        PlayerObj = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
     }
 
     public void Update()
@@ -79,9 +79,9 @@ public class ScoreScripts : MonoBehaviour
             blackmint.SetActive(true);
         }
         //スコアがMaxになったらボスを登場させる
-        if (score == BosenemyScoreMax)
+        if (score == BossenemyScoreMax)
         {
-            BosgameObj.GetComponent<ShootingSceneManagerGameStage>().BosEnemy();
+            BossgameObj.GetComponent<ShootingSceneManagerGameStage>().BosEnemy();
         }
     }
 

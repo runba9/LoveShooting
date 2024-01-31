@@ -30,6 +30,11 @@ public class SEScripts : MonoBehaviour
         //Componentを取得
         audioSource = GetComponent<AudioSource>();
 
+    }
+
+    private void Update()
+    {
+        
         //シーン移動してもデータ保存され、鳴り続ける
         DontDestroyOnLoad(this);
     }

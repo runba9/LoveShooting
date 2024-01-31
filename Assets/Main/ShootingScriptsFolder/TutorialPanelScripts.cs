@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialPanelScripts : MonoBehaviour
 {
     [SerializeField] 
-    private GameObject TutorialPanel;     //開閉したいパネルの箱
-    public EnemyBos demoscript;           //EnemyBosスクリプトの中を呼び出す為の箱
+    private GameObject TutorialPanel;       //開閉したいパネルの箱
+
+    private EnemyBoss demoscript;           //EnemyBossスクリプトの中を呼び出す為の箱
 
     //選択肢攻撃でボタンを選んだら行う機能３つ
 
@@ -19,8 +18,8 @@ public class TutorialPanelScripts : MonoBehaviour
         Time.timeScale = 1;
         //パネルを非表示
         TutorialPanel.SetActive(false);
-        //EnemyBosスクリプトの中を呼び出す
-        demoscript.GetComponent<EnemyBos>().Criticalattack();
+        //EnemyBossスクリプトの中を呼び出す
+        demoscript.GetComponent<EnemyBoss>().Criticalattack();
     }
     /// <summary>
     /// プレイヤーに攻撃する機能（未実装）
@@ -42,6 +41,5 @@ public class TutorialPanelScripts : MonoBehaviour
         //パネルを非表示
         TutorialPanel.SetActive(false);
     }
-
 
 }

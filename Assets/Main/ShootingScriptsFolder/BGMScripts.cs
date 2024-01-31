@@ -7,15 +7,14 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(AudioSource))]
 public class BGMScripts : MonoBehaviour
 {
-
     public AudioClip sound01;
     public AudioClip sound02;
     public AudioClip sound03;
     public AudioClip sound04;
     AudioSource audioSource;
 
-
     private AudioSource BGMaudioSource; //BGM用
+
     void Start()
     {
         // "BGMAudioSource"コンポーネントを取得
@@ -23,15 +22,13 @@ public class BGMScripts : MonoBehaviour
 
         //Componentを取得
         audioSource = GetComponent<AudioSource>();
-
-        //シーン移動してもデータ保存され、鳴り続ける
-       // DontDestroyOnLoad(this);
     }
 
 
     public void OnClickDiscSe1()
     {
         audioSource.PlayOneShot(sound01);
+
         //Debug.Log("click se1");
     }
     public void OnClickDiscSe2()
