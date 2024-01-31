@@ -5,7 +5,13 @@ public class TutorialPanelScripts : MonoBehaviour
     [SerializeField] 
     private GameObject TutorialPanel;       //開閉したいパネルの箱
 
-    private EnemyBoss demoscript;           //EnemyBossスクリプトの中を呼び出す為の箱
+    //public static EnemyBoss demoscript;     //EnemyBossスクリプトの中を呼び出す為の箱
+    private GameObject demoscript;         //Unity上で作ったGameObjectである名前ChoicesgameObjを入れる変数
+
+    private void Start()
+    {
+        demoscript = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
+    }
 
     //選択肢攻撃でボタンを選んだら行う機能３つ
 

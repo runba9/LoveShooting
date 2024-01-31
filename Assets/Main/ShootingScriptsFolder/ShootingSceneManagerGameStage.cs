@@ -1,11 +1,4 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using TMPro;
 using UnityEngine;
-//using UnityEngine.SceneManagement;
-//using UnityEngine.UI;
-//using static UnityEditor.Experimental.GraphView.GraphView;
-//using static UnityEditor.Progress;
 
 public class ShootingSceneManagerGameStage : MonoBehaviour
 {

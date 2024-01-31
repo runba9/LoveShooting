@@ -37,12 +37,6 @@ public class PlayerScripts : MonoBehaviour
     // y軸方向の移動範囲の最大値
     [SerializeField] private float _maxY = 3.78f;
 
-    ////言葉の刃(未実装)
-    //[SerializeField]
-    //private GameObject _PlayerverbalbladeObject;    //言葉の刃のプレハブを入れる(未実装)
-    //[SerializeField]
-    //private float _posverbalblade = 0.2f;           //プレイヤーの言葉の刃の位置調整
-
     //無敵アイテム
     [SerializeField]
     public float flashInterval;                       //フラッシュする間
@@ -139,15 +133,6 @@ public class PlayerScripts : MonoBehaviour
             SetItmePosition();
 
         }
-        //  当たったオブジェクトが言葉の刃アイテムならば(未実装)
-        if (other.gameObject.tag.Equals("verbalblade"))
-        {
-            //アイテム用SE再生
-            SEgameObj.GetComponent<SEScripts>().ItemSE();
-            //ItemVerbalbladeScripts呼び出し
-            //var itemVerbalbladeScripts = other.GetComponent<ItemVerbalbladeScripts>();
-
-        }
         //  無敵アイテム
         if (other.gameObject.tag.Equals("Invincible"))
         {
@@ -162,7 +147,6 @@ public class PlayerScripts : MonoBehaviour
             //ItemInvincibl(無敵アイテム)コルーチン呼び出し
             StartCoroutine(_ItemInvincible());
         }
-
         //エネミー
         //  当たったオブジェクトがボスからの攻撃(選択肢攻撃)ならば
         if (other.gameObject.tag.Equals("ChoicesBullet"))

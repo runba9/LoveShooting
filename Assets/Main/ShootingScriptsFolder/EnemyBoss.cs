@@ -21,7 +21,7 @@ public class EnemyBoss : MonoBehaviour
     private System.Action _deadCallback;            //死んだときに死んだことを伝える
     private GameObject SEgameObj;                   //Unity上で作ったGameObjectである名前SEを入れる変数
 
-    public static EnemyBoss _enemyBossScripts;        //どこでもスクリプトを呼び出すため
+    public static EnemyBoss _enemyBossScripts;      //どこでもスクリプトを呼び出すため
     void Start()
     {
         SEgameObj = GameObject.Find("SE");          //Unity上で作ったSEを取得
@@ -154,7 +154,7 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     public void EnemyrevivalOn()
     {
-        //_enemy.SetActive(true);
+        _enemy.SetActive(true);
     }
 
     /// <summary>
