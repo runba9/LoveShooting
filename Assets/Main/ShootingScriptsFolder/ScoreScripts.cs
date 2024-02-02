@@ -19,6 +19,8 @@ public class ScoreScripts : MonoBehaviour
     [SerializeField]
     GameObject enemy;                           //エネミーを入れる箱
     [SerializeField]
+    private GameObject _bossHpSlider;           //ボスのhpスライダーを入れる箱
+    [SerializeField]
     public GameObject blackmint;                //チョコミント障害物
     [SerializeField]
     public GameObject whitestrawberry;          //ホワイトストロベリー障害物
@@ -78,9 +80,10 @@ public class ScoreScripts : MonoBehaviour
         {
             blackmint.SetActive(true);
         }
-        //スコアがMaxになったらボスを登場させる
+        //スコアがMaxになったらボスとボスのhpバーを登場させる
         if (score == BossenemyScoreMax)
         {
+            _bossHpSlider.SetActive(true);
             BossgameObj.GetComponent<ShootingSceneManagerGameStage>().BosEnemy();
         }
     }
@@ -119,7 +122,7 @@ public class ScoreScripts : MonoBehaviour
             //タグ持ち身代わり表示（タグが見つからないとエラーをはかなくさせる）
             _damePlayer.SetActive(true);
             //フェートインアウト処理後ゲームオーバー画面に飛ぶ
-            SceneChangr.scenechangrInstance._fade.SceneFade("GameOverSeen");
+            SceneChangr.scenechangrInstance._fade.SceneFade("GameOverScene");
         }
         else
         {

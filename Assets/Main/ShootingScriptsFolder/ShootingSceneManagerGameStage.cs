@@ -101,8 +101,8 @@ public class ShootingSceneManagerGameStage : MonoBehaviour
         //プレイヤータグがあるかnullで確認してあったら実行
         if (playerTransform == null)
         {
-            //0.5後にTimeChoicesPanel_Onを呼び出す
-            Invoke(("TimeChoicesPanel_On"), 0.5f);
+            //呼び出す
+            TimeChoicesPanel_On();
         }
         else { }
 

@@ -1,9 +1,13 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class EnemyBoss : MonoBehaviour
 {
     [SerializeField]
     public GameObject _enemy;                       //このボスオブジェを入れる箱
+    private SpriteRenderer _enemyboss;              //ボスのスプライトレンダラー用の箱
     [SerializeField]
     private float _Speed = 3f;                      //エネミーのスピード
     [SerializeField]
@@ -11,7 +15,7 @@ public class EnemyBoss : MonoBehaviour
     private int Critical;                           //クリティカル攻撃告白
     private int Damage;                             //プレイヤーの通常攻撃
     private bool criticalCount = false;             //クリティカル攻撃告白の有無
-    public bool _criticalconfession = false;
+    private Slider BossHp_slider;                   //ボスのhpを可視化するためにスライダーで表示
 
     public GameObject[] _choicesBullet;             //攻撃の選択肢とダミーをランダムで出す為ののリスト
 
@@ -24,42 +28,12 @@ public class EnemyBoss : MonoBehaviour
     public static EnemyBoss _enemyBossScripts;      //どこでもスクリプトを呼び出すため
     void Start()
     {
-        SEgameObj = GameObject.Find("SE");          //Unity上で作ったSEを取得
+        SEgameObj     = GameObject.Find("SE");                                      //Unity上で作ったSEを取得
+        BossHp_slider = GameObject.Find("BossHpSlider").GetComponent<Slider>();     //Unity上で作ったBossHpSliderを取得
+        _enemyboss    = GetComponent<SpriteRenderer>(); //ボスのスプライトレンダラー取得
 
-        //5秒後InputiateBullet()を呼び出し弾を発射させる
-        InvokeRepeating("InputiateChoicesbullet", 1, 5);
-    }
-    /// <summary>
-    /// 弾発射装置
-    /// </summary>
-    public void InputiateChoicesbullet()
-    {
-        //アイテム用SE再生
-        SEgameObj.GetComponent<SEScripts>().bulletSE();
+    }       
 
-        //リスト化したものをランダムで出力していく、下のメモの簡易バージョン
-        var Choicesbullet = Random.Range(0, _choicesBullet.Length);
-        Instantiate(_choicesBullet[Choicesbullet], transform.position, transform.rotation);
-
-        //////メモ(これはただの記念で残してるだけです)
-        ////選択肢
-        //if (Random.Range(0, 1) == 0)
-        //{
-        //    //弾を生成する
-        //    var Choicesbullet = Instantiate(_choicesBullet);
-        //    //弾の位置情報
-        //    Choicesbullet.transform.position = transform.position;
-        //}
-        ////ダミー選択肢
-        //if (Random.Range(0, 1) == 0)
-        //{
-        //    //弾を生成する
-        //    var Choicesbullet = Instantiate(_choicesNoBullet);
-        //    //弾の位置情報
-        //    Choicesbullet.transform.position = transform.position;
-        //}
-
-    }
 
     public void SetUp(float speed = 6, System.Action deadCallback = null)
     {
@@ -69,17 +43,20 @@ public class EnemyBoss : MonoBehaviour
 
     void Update()
     {
+
+        //5秒後コルーチンで呼び出しクリティカル攻撃弾を発射させる
+        StartCoroutine(InputiateChoicesbullet());
+
         //現在のボスのhp
-        Debug.Log("現在hp" + _EnemyBosshp);
+        //Debug.Log("現在hp" + _EnemyBosshp);
         //ボスの体力が０か０を超えたらオブジェクト破壊
         if (_EnemyBosshp <= 0)
         {
-            Deadboss();
+            StartCoroutine(Deadboss());
         }
 
-        pos = transform.position;
-
-        //左右移動
+        //ボスの移動範囲（左右移動）
+        var pos = transform.position;
         transform.Translate(transform.right * Time.deltaTime * _Speed * _enemyBoss);
         if (pos.x > 7)//幅
         {
@@ -91,6 +68,47 @@ public class EnemyBoss : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// クリティカル攻撃弾発射装置
+    /// </summary>
+    private IEnumerator InputiateChoicesbullet()
+    {
+        while (true)
+        {
+
+            yield return new WaitForSeconds(5); // 5秒間待機
+
+            //アイテム用SE再生
+            SEgameObj.GetComponent<SEScripts>().bulletSE();
+
+            //リスト化したものをランダムで出力していく、下のメモの簡易バージョン
+            var Choicesbullet = Random.Range(0, _choicesBullet.Length);
+            Instantiate(_choicesBullet[Choicesbullet], transform.position, transform.rotation);
+            /*メモ----------
+           　簡易バージョンが作れたのが嬉しかったのでメモに残してます
+            //選択肢
+            if (Random.Range(0, 1) == 0)
+            {
+                //弾を生成する
+                var Choicesbullet = Instantiate(_choicesBullet);
+                //弾の位置情報
+                Choicesbullet.transform.position = transform.position;
+            }
+            //ダミー選択肢
+            if (Random.Range(0, 1) == 0)
+            {
+                //弾を生成する
+                var Choicesbullet = Instantiate(_choicesNoBullet);
+                //弾の位置情報
+                Choicesbullet.transform.position = transform.position;
+            }
+            */
+
+        }
+    }
+
+
 
     //敵消滅
     public void OnTriggerEnter2D(Collider2D collision)
@@ -111,9 +129,6 @@ public class EnemyBoss : MonoBehaviour
     public void Conventionalattack()
     {
 
-        //ダメージが入ったらオブジェを見えなくさせる
-        //_enemy.SetActive(false);
-
         //通常攻撃
         Damage = 1;
 
@@ -133,9 +148,16 @@ public class EnemyBoss : MonoBehaviour
         //計算処理
         _EnemyBosshp -= Damage;
         Debug.Log("計算処理後hp" + _EnemyBosshp);
-        //ダメージが入ったらオブジェを見えなくさせ0.1後に復活
-        Invoke(("EnemyrevivalOn"), 0.1f);
 
+        // HPゲージに値を設定
+        BossHp_slider.value = _EnemyBosshp;
+
+        //ダメージが入ったらオブジェを見えなくさせ0.1後に復活
+        StartCoroutine(EnemyrevivalOn());
+        /*メモ-------
+        Invoke(("EnemyrevivalOn"), 0.1f);で呼び出していたが
+        コルーチンの方が圧倒的に使いやすい
+        */
     }
 
     /// <summary>
@@ -150,29 +172,40 @@ public class EnemyBoss : MonoBehaviour
     }
 
     /// <summary>
-    /// 消したオブジェを0.1秒後に呼び出す演出
+    /// 攻撃したオブジェを0.1秒後に呼び出す演出コルーチン
     /// </summary>
-    public void EnemyrevivalOn()
+    private IEnumerator EnemyrevivalOn()
     {
-        _enemy.SetActive(true);
+        //ダメージが入ったらオブジェを見えなくさせる
+        _enemyboss.enabled = false;
+        yield return new WaitForSeconds(0.1f); // 0.1秒間待機
+        _enemyboss.enabled = true;
+        /*メモ----------------
+         _enemy.SetActive(true);で消すと全部消えるので画像だけの
+        スプライトレンダラーのみon、offした方が便利
+         */
+
     }
 
     /// <summary>
     /// ボスの死んだ処理
     /// </summary>
-    public void Deadboss()
+    private IEnumerator Deadboss()
     {
         // 弾が当たった場所に爆発エフェクトを生成する
-        Instantiate(
-            _effectEnemy,
-            transform.localPosition,
-            Quaternion.identity);
+        Instantiate(_effectEnemy,transform.localPosition,Quaternion.identity);
 
         //HPが０になったら死ぬ
         _deadCallback?.Invoke();  //メモ：？は_deadCallbackがnullじゃないときに関数を呼び出す
         Destroy(gameObject);     //敵消滅
-                                 //フェートインアウト処理後リザルト画面に飛ぶ
-        SceneChangr.scenechangrInstance._fade.SceneFade("ResultSeen");
+
+        yield return null; // 1フレーム待機
+
+        //時をゆっくりにする
+        Time.timeScale = 0.1f;
+
+        //フェートインアウト処理後リザルト画面に飛ぶ
+        SceneChangr.scenechangrInstance._fade.SceneFade("ResultScene");
     }
 
 }

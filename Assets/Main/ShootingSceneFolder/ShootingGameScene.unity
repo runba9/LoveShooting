@@ -795,7 +795,7 @@ RectTransform:
   m_GameObject: {fileID: 182783241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1907725426}
@@ -803,8 +803,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1500, y: 800}
+  m_AnchoredPosition: {x: 0, y: 34}
+  m_SizeDelta: {x: 1280, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &182783243
 CanvasRenderer:
@@ -1963,9 +1963,13 @@ MonoBehaviour:
   _PlayerPrefabsScripts: {fileID: 0}
   textScore: {fileID: 39017184}
   _instructionManualList:
-  - {fileID: 21300000, guid: 76831397af0d06c4b867779a3c9e71af, type: 3}
-  - {fileID: 21300000, guid: 0f665fcb512959f4cb1027c51864fed2, type: 3}
-  _instructionManualListNumber: 1
+  - {fileID: 21300000, guid: 29b00a3c822260c4aa73ced770f35215, type: 3}
+  - {fileID: 21300000, guid: 6e75d181a5bd6a54094b05aa4549f550, type: 3}
+  - {fileID: 21300000, guid: 4bb9ccf0c948c9a408b2315ac0dccfbb, type: 3}
+  - {fileID: 21300000, guid: b5129839096076a4c83aee1eeee604fe, type: 3}
+  - {fileID: 21300000, guid: bf3681ad7268d0f4e9b220518d38dfed, type: 3}
+  - {fileID: 21300000, guid: 7aae347720ec2e34c8e8922d515d2b3c, type: 3}
+  _instructionManualListNumber: 5
   _instructionManuaPanel: {fileID: 1907725425}
   ExplainPoint: {fileID: 182783244}
   _nextText: {fileID: 5624156}
@@ -2511,7 +2515,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.5882353}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2546,8 +2550,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1599008331}
-        m_TargetAssemblyTypeName: SeenScripts, Assembly-CSharp
-        m_MethodName: NextStage_ShootingGameSeenStage_Mein
+        m_TargetAssemblyTypeName: SceneScripts, Assembly-CSharp
+        m_MethodName: Scene_MeinGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2604,7 +2608,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1599008326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f7e77bbb9f797f4d8df28667c8e2551, type: 3}
+  m_Script: {fileID: 11500000, guid: ea15601c0bd601e4880799b47ed26362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1609124769
@@ -3263,6 +3267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1907725426}
+  - component: {fileID: 1907725427}
   m_Layer: 5
   m_Name: TutorialPanel
   m_TagString: Untagged
@@ -3293,6 +3298,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1907725427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907725425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 0
 --- !u!1 &1908985659
 GameObject:
   m_ObjectHideFlags: 0
@@ -3586,7 +3605,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.39215687}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -3608,6 +3627,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 783423247}
+        m_TargetAssemblyTypeName: SEScripts, Assembly-CSharp
+        m_MethodName: OnClickDiscSe1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1134287742}
         m_TargetAssemblyTypeName: ShootingSceneManager, Assembly-CSharp
         m_MethodName: OnButtonExplainNext

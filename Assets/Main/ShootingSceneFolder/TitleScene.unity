@@ -2463,9 +2463,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1821651990}
-        m_TargetAssemblyTypeName: SeenScripts, Assembly-CSharp
-        m_MethodName: Gamestart_button
+      - m_Target: {fileID: 1821651992}
+        m_TargetAssemblyTypeName: SceneScripts, Assembly-CSharp
+        m_MethodName: Scene_tutorialGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2894,7 +2894,7 @@ GameObject:
   - component: {fileID: 1821651987}
   - component: {fileID: 1821651989}
   - component: {fileID: 1821651988}
-  - component: {fileID: 1821651990}
+  - component: {fileID: 1821651992}
   - component: {fileID: 1821651991}
   m_Layer: 5
   m_Name: BackGuraund
@@ -2965,18 +2965,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821651986}
   m_CullTransparentMesh: 1
---- !u!114 &1821651990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821651986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f7e77bbb9f797f4d8df28667c8e2551, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1821651991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2990,6 +2978,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OptionPanel: {fileID: 750257365}
+--- !u!114 &1821651992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821651986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea15601c0bd601e4880799b47ed26362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1888204134
 GameObject:
   m_ObjectHideFlags: 0
@@ -3461,8 +3461,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1821651990}
-        m_TargetAssemblyTypeName: SeenScripts, Assembly-CSharp
+      - m_Target: {fileID: 1821651992}
+        m_TargetAssemblyTypeName: SceneScripts, Assembly-CSharp
         m_MethodName: OnCrickGameEnd
         m_Mode: 1
         m_Arguments:

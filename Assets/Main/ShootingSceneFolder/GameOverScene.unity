@@ -221,8 +221,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 65605324}
-        m_TargetAssemblyTypeName: SeenScripts, Assembly-CSharp
-        m_MethodName: Titlestart_button
+        m_TargetAssemblyTypeName: SceneScripts, Assembly-CSharp
+        m_MethodName: Scene_titl
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 65605319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f7e77bbb9f797f4d8df28667c8e2551, type: 3}
+  m_Script: {fileID: 11500000, guid: ea15601c0bd601e4880799b47ed26362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &66123399
