@@ -164,6 +164,7 @@ public class ShootingSceneManager : MonoBehaviour
     {
         timerscore = 0;               //時間をリセット
         //フェートインアウト処理後ステージ画面に飛ぶ
-        SceneManager.LoadScene("ShootingGameSeenStage_Mein");
+        //SceneManager.LoadScene("ShootingGameSeenStage_Mein");
+        SceneChangr.scenechangrInstance._fade.SceneFade("ShootingGameSeenStage_Mein");
     }
 }

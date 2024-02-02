@@ -2495,9 +2495,9 @@ MonoBehaviour:
   _bossHpSlider: {fileID: 5575360975793765456}
   blackmint: {fileID: 569857064}
   whitestrawberry: {fileID: 430026035}
-  whitestrawberryScoreMax: 0
-  blackmintScoreMax: 0
-  BossenemyScoreMax: 1
+  whitestrawberryScoreMax: 10
+  blackmintScoreMax: 40
+  BossenemyScoreMax: 70
   life: 3
 --- !u!1 &751004607
 GameObject:

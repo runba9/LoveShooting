@@ -17,24 +17,38 @@ public class SEScripts : MonoBehaviour
     public AudioClip itemdamageClip; //アイテムを取得した時
     public AudioClip playerClip;     //プレイヤーが攻撃された時
 
-    AudioSource audioSource;
+    public AudioSource audioSource;  //SE用
 
     public static SEScripts _seaudioSource;//どこでもスクリプトを呼び出すため
 
     private AudioSource SEaudioSource; //SE用
+
+    private void Awake()
+    {
+        // 同じ処理を2回しないようにする
+        if (_seaudioSource == null)
+        {
+            // 変数の中にスクリプトを格納
+            _seaudioSource = GetComponent<SEScripts>();
+            _seaudioSource = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         // "SEAudioSource"コンポーネントを取得
-        SEaudioSource = gameObject.GetComponent<AudioSource>();
-
-        //Componentを取得
         audioSource = GetComponent<AudioSource>();
+        _seaudioSource = GetComponent<SEScripts>();
 
     }
 
     private void Update()
     {
-        
+
         //シーン移動してもデータ保存され、鳴り続ける
         DontDestroyOnLoad(this);
     }
@@ -92,7 +106,7 @@ public class SEScripts : MonoBehaviour
     public void SESoundSliderOnValueChange(float newSliderValue)
     {
         // 音楽の音量をスライドバーの値に変更
-        SEaudioSource.volume = newSliderValue;
+        audioSource.volume = newSliderValue;
     }
 
 }

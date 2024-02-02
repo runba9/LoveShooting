@@ -1,7 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class EnemyBoss : MonoBehaviour
 {
@@ -28,12 +28,13 @@ public class EnemyBoss : MonoBehaviour
     public static EnemyBoss _enemyBossScripts;      //どこでもスクリプトを呼び出すため
     void Start()
     {
-        SEgameObj     = GameObject.Find("SE");                                      //Unity上で作ったSEを取得
-        BossHp_slider = GameObject.Find("BossHpSlider").GetComponent<Slider>();     //Unity上で作ったBossHpSliderを取得
-        _enemyboss    = GetComponent<SpriteRenderer>(); //ボスのスプライトレンダラー取得
+        SEgameObj           = GameObject.Find("SE");                                      //Unity上で作ったSEを取得
+        BossHp_slider       = GameObject.Find("BossHpSlider").GetComponent<Slider>();     //Unity上で作ったBossHpSliderを取得
+        _enemyboss          = GetComponent<SpriteRenderer>(); //ボスのスプライトレンダラー取得
 
+        //5秒感覚で開けて呼び出しクリティカル攻撃弾を発射させる
+        InvokeRepeating("InputiateChoicesbullet", 1.0f, 5.0f);
     }       
-
 
     public void SetUp(float speed = 6, System.Action deadCallback = null)
     {
@@ -44,19 +45,16 @@ public class EnemyBoss : MonoBehaviour
     void Update()
     {
 
-        //5秒後コルーチンで呼び出しクリティカル攻撃弾を発射させる
-        StartCoroutine(InputiateChoicesbullet());
-
         //現在のボスのhp
         //Debug.Log("現在hp" + _EnemyBosshp);
         //ボスの体力が０か０を超えたらオブジェクト破壊
-        if (_EnemyBosshp <= 0)
+        if (_EnemyBosshp <= 0 || _EnemyBosshp <= -1)
         {
             StartCoroutine(Deadboss());
         }
 
         //ボスの移動範囲（左右移動）
-        var pos = transform.position;
+        pos = transform.position;
         transform.Translate(transform.right * Time.deltaTime * _Speed * _enemyBoss);
         if (pos.x > 7)//幅
         {
@@ -72,13 +70,8 @@ public class EnemyBoss : MonoBehaviour
     /// <summary>
     /// クリティカル攻撃弾発射装置
     /// </summary>
-    private IEnumerator InputiateChoicesbullet()
+    private void InputiateChoicesbullet()
     {
-        while (true)
-        {
-
-            yield return new WaitForSeconds(5); // 5秒間待機
-
             //アイテム用SE再生
             SEgameObj.GetComponent<SEScripts>().bulletSE();
 
@@ -105,10 +98,7 @@ public class EnemyBoss : MonoBehaviour
             }
             */
 
-        }
     }
-
-
 
     //敵消滅
     public void OnTriggerEnter2D(Collider2D collision)
@@ -192,20 +182,21 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     private IEnumerator Deadboss()
     {
+        yield return new WaitForSeconds(1);
+
         // 弾が当たった場所に爆発エフェクトを生成する
         Instantiate(_effectEnemy,transform.localPosition,Quaternion.identity);
 
         //HPが０になったら死ぬ
         _deadCallback?.Invoke();  //メモ：？は_deadCallbackがnullじゃないときに関数を呼び出す
-        Destroy(gameObject);     //敵消滅
+        _enemyboss.enabled = false;     //敵消滅
 
-        yield return null; // 1フレーム待機
-
-        //時をゆっくりにする
-        Time.timeScale = 0.1f;
+        yield return new WaitForSeconds(3);
 
         //フェートインアウト処理後リザルト画面に飛ぶ
-        SceneChangr.scenechangrInstance._fade.SceneFade("ResultScene");
+        SceneManager.LoadScene("ResultScene");
+        //SceneChangr.scenechangrInstance._fade.SceneFade("ResultScene");
+
     }
 
 }

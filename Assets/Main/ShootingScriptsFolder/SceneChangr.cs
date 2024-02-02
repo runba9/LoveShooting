@@ -18,6 +18,11 @@ public class SceneChangr : MonoBehaviour
         {
             // 変数の中にスクリプトを格納
             scenechangrInstance = GetComponent<SceneChangr>();
+            scenechangrInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -107,6 +107,7 @@ public class ShootingSceneManagerGameStage : MonoBehaviour
         else { }
 
     }
+
     public void TimeChoicesPanel_On()
     {
         //Žž‚ðŽ~‚ß‚é

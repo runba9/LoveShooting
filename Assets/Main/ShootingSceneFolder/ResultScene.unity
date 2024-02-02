@@ -1200,6 +1200,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeManegyer
       objectReference: {fileID: 0}
+    - target: {fileID: 5111961101425129021, guid: de506bb6a41c9fc43b79b8bf424d5687, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de506bb6a41c9fc43b79b8bf424d5687, type: 3}
 --- !u!1 &1791125283

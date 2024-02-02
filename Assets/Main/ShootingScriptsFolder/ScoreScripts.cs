@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class ScoreScripts : MonoBehaviour
@@ -20,6 +18,7 @@ public class ScoreScripts : MonoBehaviour
     GameObject enemy;                           //エネミーを入れる箱
     [SerializeField]
     private GameObject _bossHpSlider;           //ボスのhpスライダーを入れる箱
+
     [SerializeField]
     public GameObject blackmint;                //チョコミント障害物
     [SerializeField]
@@ -45,9 +44,9 @@ public class ScoreScripts : MonoBehaviour
 
     public void Start()
     {
-        SEgameObj = GameObject.Find("SE");              //Unity上で作ったSEを取得
-        BossgameObj = GameObject.Find("GameManager");   //Unity上で作ったGameManagerを取得
-        PlayerObj = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
+        SEgameObj   = GameObject.Find("SE");              //Unity上で作ったSEを取得
+        BossgameObj = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
+        PlayerObj   = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
     }
 
     public void Update()
