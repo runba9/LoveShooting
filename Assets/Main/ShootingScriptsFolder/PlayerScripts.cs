@@ -176,7 +176,6 @@ public class PlayerScripts : MonoBehaviour
         {
             //ダメージ用SE再生
             SEgameObj.GetComponent<SEScripts>().damageSE();
-
         }
         
     }

@@ -25,6 +25,8 @@ public class ShootingSceneManagerGameStage : MonoBehaviour
     private float _timer = 0;                         //経過時間
     private float _limitTimer = 0;                    //出現時間
     private float _streamPosx = 10;                   //出現座標のうちX座標右固定
+    public EnemyBoss _enemyBoss;                      //ボスエネミースクリプトを呼び出す
+
     public static ShootingSceneManagerGameStage _shootingSceneManagerGameStage;//どこでもスクリプトを呼び出すため
     void Start()
     {
@@ -91,6 +93,15 @@ public class ShootingSceneManagerGameStage : MonoBehaviour
         var enemy = Instantiate(_enemyBosPrefabs);
         //出現座標設定
         enemy.transform.position = new (_streamPosx, 1, 7);
+        _enemyBoss = enemy.GetComponent<EnemyBoss>();
+        /*　メモ--------
+         * 
+         * GetComponentで見つけられずnullになる
+         * 解決）
+         * public EnemyBoss _enemyBoss;　
+         * _enemyBoss = enemy.GetComponent<EnemyBoss>();
+         * スクリプトを呼び出しを設定し解決
+         */
     }
 
     /// <summary>

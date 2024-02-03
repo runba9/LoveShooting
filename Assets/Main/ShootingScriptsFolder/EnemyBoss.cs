@@ -72,31 +72,31 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     private void InputiateChoicesbullet()
     {
-            //アイテム用SE再生
-            SEgameObj.GetComponent<SEScripts>().bulletSE();
+        //アイテム用SE再生
+        SEgameObj.GetComponent<SEScripts>().bulletSE();
 
-            //リスト化したものをランダムで出力していく、下のメモの簡易バージョン
-            var Choicesbullet = Random.Range(0, _choicesBullet.Length);
-            Instantiate(_choicesBullet[Choicesbullet], transform.position, transform.rotation);
-            /*メモ----------
+        //リスト化したものをランダムで出力していく、下のメモの簡易バージョン
+        var Choicesbullet = Random.Range(0, _choicesBullet.Length);
+        Instantiate(_choicesBullet[Choicesbullet], transform.position, transform.rotation);
+        /*メモ----------
            　簡易バージョンが作れたのが嬉しかったのでメモに残してます
-            //選択肢
-            if (Random.Range(0, 1) == 0)
-            {
-                //弾を生成する
-                var Choicesbullet = Instantiate(_choicesBullet);
-                //弾の位置情報
-                Choicesbullet.transform.position = transform.position;
-            }
-            //ダミー選択肢
-            if (Random.Range(0, 1) == 0)
-            {
-                //弾を生成する
-                var Choicesbullet = Instantiate(_choicesNoBullet);
-                //弾の位置情報
-                Choicesbullet.transform.position = transform.position;
-            }
-            */
+        //選択肢
+        if (Random.Range(0, 1) == 0)
+        {
+            //弾を生成する
+            var Choicesbullet = Instantiate(_choicesBullet);
+            //弾の位置情報
+            Choicesbullet.transform.position = transform.position;
+        }
+        //ダミー選択肢
+        if (Random.Range(0, 1) == 0)
+        {
+            //弾を生成する
+            var Choicesbullet = Instantiate(_choicesNoBullet);
+            //弾の位置情報
+            Choicesbullet.transform.position = transform.position;
+        }
+        */
 
     }
 
@@ -155,11 +155,13 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     public void Criticalattack()
     {
+        Debug.Log("呼び出しOK");
         //クリティカル告白攻撃をtrueにして
         criticalCount = true;
         //攻撃呼び出し
         Conventionalattack();
     }
+
 
     /// <summary>
     /// 攻撃したオブジェを0.1秒後に呼び出す演出コルーチン
@@ -188,7 +190,7 @@ public class EnemyBoss : MonoBehaviour
         Instantiate(_effectEnemy,transform.localPosition,Quaternion.identity);
 
         //HPが０になったら死ぬ
-        _deadCallback?.Invoke();  //メモ：？は_deadCallbackがnullじゃないときに関数を呼び出す
+        _deadCallback?.Invoke();        //メモ：？は_deadCallbackがnullじゃないときに関数を呼び出す
         _enemyboss.enabled = false;     //敵消滅
 
         yield return new WaitForSeconds(3);
