@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2105481342600451991}
   - component: {fileID: 6615255402711088118}
   - component: {fileID: 5857753120621928434}
+  - component: {fileID: 8718286108538531379}
   m_Layer: 8
   m_Name: EnemyBoss
   m_TagString: Enemy
@@ -74,8 +75,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 149
-  m_Sprite: {fileID: 21300000, guid: c7af9b427c235754da1a8f540ff427d4, type: 3}
+  m_SortingOrder: 6
+  m_Sprite: {fileID: 21300000, guid: bdd35152c2ab9e848a0330174738d5be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +104,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.8, y: 4.8}
+    oldSize: {x: 5.28, y: 5.28}
     newSize: {x: 6, y: 6}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,9 +128,28 @@ MonoBehaviour:
   _enemy: {fileID: 7080282961950340694}
   _Speed: 3
   _EnemyBosshp: 30
-  BossHpSliderPrefab: {fileID: 4283509337313325746, guid: 03e82bf05486f624d8351796f1419ef2, type: 3}
   _choicesBullet:
   - {fileID: 2152324240547314129, guid: a3fb7791e6ef7cf46a59c83b1e65aac1, type: 3}
   - {fileID: 2152324240547314129, guid: 83c460e4d70a7504fa16f5cb768037c7, type: 3}
   _enemyBoss: 1
   _effectEnemy: {fileID: -8327687947384262712, guid: ef8f4e396b9404c499e5a18db65a9690, type: 3}
+--- !u!95 &8718286108538531379
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7080282961950340694}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba7acdd7b72b17e4f99aa97dcc3a7a7c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ShootingSceneManager : MonoBehaviour
 {
@@ -90,7 +91,7 @@ public class ShootingSceneManager : MonoBehaviour
         timerscore -= Time.deltaTime;
         if (timerscore <= 0)
         {
-            MovingScene();//シーン移動
+            StartCoroutine(MovingScene());//シーン移動
         }
 
     }
@@ -166,11 +167,17 @@ public class ShootingSceneManager : MonoBehaviour
     }
 
     //シーン移動
-    private void MovingScene()
+    private IEnumerator MovingScene()
     {
         timerscore = 0;     //時間をリセット
 
+        //フェード用のキャンバスを出せばフェードインアウトが出来る
+
+        //4秒待つ
+        yield return new WaitForSeconds(4);
+
         //フェートインアウト処理後ステージ画面に飛ぶ
-        SceneChangr.scenechangrInstance._fade.SceneFade("ShootingGameSeenStage_Mein");
+        SceneManager.LoadScene("ShootingGameSceneStage_Mein");
+        //SceneChangr.scenechangrInstance._fade.SceneFade("ShootingGameSceneStage_Mein");
     }
 }

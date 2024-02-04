@@ -5,6 +5,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class Fade : MonoBehaviour
 {
     // Fade‚É‚©‚©‚éŠÔB
