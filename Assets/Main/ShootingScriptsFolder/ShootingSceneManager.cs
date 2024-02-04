@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -9,45 +8,55 @@ public class ShootingSceneManager : MonoBehaviour
 {
     //エネミーのプレハブ
     [SerializeField]
-    private GameObject    _enemyPrefabs;
+    private GameObject _enemyPrefabs;
     //アイテムのプレハブ
     [SerializeField]
-    private GameObject    _ItemPrefabs;
+    private GameObject _ItemPrefabs;
     //アイテムのプレハブ
     [SerializeField]
-    private GameObject    _PlayerPrefabs;
+    private GameObject _PlayerPrefabs;
     //プレイヤーのプレハブ
     [SerializeField]
     private PlayerScripts _PlayerPrefabsScripts;
     //スコアプレハブ
     [SerializeField]
-    public TextMeshProUGUI textScore;        //スコアテキスト
-    private float timerscore = 20;           //経過時間
-
-    private float _timer        = 0;         //経過時間
-    private float _limitTimer   = 0;         //出現時間
-    private float _enemuLeftPos = 10;        //敵の出現座標のうちX座標右固定
+    public TextMeshProUGUI textScore;               //スコアテキスト
 
     //説明書のリスト
     [SerializeField]
-    private List<Sprite> _instructionManualList;            //変えたい画像のリスト(説明書)
-    public float         _instructionManualListNumber = 2;  //説明書の数
-    private int          _instructionManua            = 0;　//説明書をめくったページの個数
-    
-    //表示したいパネルの箱（説明書）
-    [SerializeField]
-    public GameObject _instructionManuaPanel;
-    public Image      ExplainPoint;
-    public TMP_Text   _nextText;
+    private List<Sprite> _instructionManualList;    //変えたい画像のリスト(説明書)
+    public float _instructionManualListNumber = 2;  //説明書の数
+    private int _instructionManua = 0;              //説明書をめくったページの個数
 
-    public bool Preface;//前置きが終わったかどうか
+    //表示したいパネルの箱（操作説明書）
+    [SerializeField]
+    public GameObject _instructionManuaPanel;       //表示したい画像達
+    public Image ExplainPoint;                      //表示したい画像達を設置する
+    public TMP_Text _nextText;                      //次へボタン
+
+    //表示したいパネルの箱（実機説明書）
+    [SerializeField]
+    public GameObject TryEnemy;                     //チュートリアル後に表れる説明テキスト
+
+    public bool Preface;                            //操作説明が終わったかどうか
 
     //スキップボタン
     [SerializeField]
     public GameObject SkipButton;
 
+    //カウントダウン
+    [SerializeField]
+    private float timerscore = 20;           //経過時間
+
+    private float _timer = 0;                //経過時間
+    private float _limitTimer = 0;           //出現時間
+    private float _enemuLeftPos = 10;        //敵の出現座標のうちX座標右固定
+
     void Start()
-    {       
+    {
+        //操作説明が終わったらfalseにしていく
+        Preface = true;
+
         //チュートリアル説明
         StartCoroutine(Tutorial());
     }
@@ -57,11 +66,10 @@ public class ShootingSceneManager : MonoBehaviour
         //1番上のtext表示
         RefreshScoreText();
 
-        //前置きが終わったら
-        if(Preface == false)
+        //操作説明が終わったら
+        if (Preface == false)
         {
-
-           _limitTimer = Random.Range(0.5f, 2.0f);
+            _limitTimer = Random.Range(0.5f, 2.0f);
 
             _timer += Time.deltaTime;     //時間を追加
                                           //予定時刻を超えたら
@@ -71,8 +79,12 @@ public class ShootingSceneManager : MonoBehaviour
                                           //予定時間を再設定する
                 _limitTimer = Random.Range(0.5f, 2.0f);
                 InstantiateEnemy();       //敵を生成
+
+                //画像表示
+                TryEnemy.SetActive(true);
             }
         }
+
 
         //20秒から少しずつ減って０になったら
         timerscore -= Time.deltaTime;
@@ -98,8 +110,6 @@ public class ShootingSceneManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator Tutorial()
     {
-        //前置きの始まりのtrue
-        Preface = true;
         // 1秒待機
         yield return new WaitForSeconds(1);
 
@@ -115,12 +125,6 @@ public class ShootingSceneManager : MonoBehaviour
     //エネミーとアイテムが右から左へ横からプレハブでランダムに出す
     private void InstantiateEnemy()
     {
-        //アイテム
-        if(Random.Range(0, 4) == 0)
-        {
-            var enemy = Instantiate(_ItemPrefabs);
-            enemy.transform.position = new Vector3(_enemuLeftPos, Random.Range(-5, 5f), 0);
-        }
         //エネミー
         if (Random.Range(0, 2) == 0)
         {
@@ -129,6 +133,8 @@ public class ShootingSceneManager : MonoBehaviour
         }
     }
 
+
+
     //説明書を次のページに、ループさせる
     public void OnButtonExplainNext()
     {
@@ -136,7 +142,7 @@ public class ShootingSceneManager : MonoBehaviour
         {
             //読み終わったら閉じる
             _instructionManuaPanel.SetActive(false);
-            //前置き終わり
+            //操作説明終わり
             Preface = false;
             //時を進める
             Time.timeScale = 1;
@@ -162,9 +168,9 @@ public class ShootingSceneManager : MonoBehaviour
     //シーン移動
     private void MovingScene()
     {
-        timerscore = 0;               //時間をリセット
+        timerscore = 0;     //時間をリセット
+
         //フェートインアウト処理後ステージ画面に飛ぶ
-        //SceneManager.LoadScene("ShootingGameSeenStage_Mein");
         SceneChangr.scenechangrInstance._fade.SceneFade("ShootingGameSeenStage_Mein");
     }
 }

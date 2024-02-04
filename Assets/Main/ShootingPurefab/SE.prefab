@@ -45,10 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cdfce7d3573b65458825d462897e7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound01: {fileID: 8300000, guid: cea4b2c64bd86d54b97f583aced5998e, type: 3}
-  sound02: {fileID: 8300000, guid: bebd1af556ce8274a94affe5a1956362, type: 3}
-  sound03: {fileID: 0}
-  sound04: {fileID: 0}
+  YesButton: {fileID: 8300000, guid: cea4b2c64bd86d54b97f583aced5998e, type: 3}
+  NoButton: {fileID: 8300000, guid: bebd1af556ce8274a94affe5a1956362, type: 3}
   bulletClip: {fileID: 8300000, guid: c0b5fbd282599bc408a1ec6ae52693f1, type: 3}
   damageClip: {fileID: 8300000, guid: c9ab27dc88a991b408237d94fffc6727, type: 3}
   itemdamageClip: {fileID: 8300000, guid: 17d7595ba339e8646a95eae1472a2861, type: 3}

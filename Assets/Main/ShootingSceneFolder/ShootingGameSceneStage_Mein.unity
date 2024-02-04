@@ -869,6 +869,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SE
       objectReference: {fileID: 0}
+    - target: {fileID: 9181317208919435212, guid: 5e6c0b8fb7d2f2a47bf3c909f33f7a71, type: 3}
+      propertyPath: NoButton
+      value: 
+      objectReference: {fileID: 8300000, guid: bebd1af556ce8274a94affe5a1956362, type: 3}
+    - target: {fileID: 9181317208919435212, guid: 5e6c0b8fb7d2f2a47bf3c909f33f7a71, type: 3}
+      propertyPath: YesButton
+      value: 
+      objectReference: {fileID: 8300000, guid: cea4b2c64bd86d54b97f583aced5998e, type: 3}
     - target: {fileID: 9181317208919435214, guid: 5e6c0b8fb7d2f2a47bf3c909f33f7a71, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2293,7 +2301,7 @@ MonoBehaviour:
   _InvincibleItemPrefabs: {fileID: 8256175798020130381, guid: 3b11ae8c0519b794a968f16fae77d544, type: 3}
   _playerPrefabs: {fileID: 955249702539980742, guid: 893e8ae6ee224dd40b7e9ee07937b2a7, type: 3}
   _playerSCripts: {fileID: 2976402101972982238, guid: 893e8ae6ee224dd40b7e9ee07937b2a7, type: 3}
-  Enemy: {fileID: 0}
+  _enemyBoss: {fileID: 0}
 --- !u!4 &720092412
 Transform:
   m_ObjectHideFlags: 0
@@ -4781,7 +4789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6904713231473026111, guid: d7c4e127b1ba01f4db38a089d16b1c9a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6904713231473026111, guid: d7c4e127b1ba01f4db38a089d16b1c9a, type: 3}
       propertyPath: m_audioClip
