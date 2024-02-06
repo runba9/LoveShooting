@@ -16,6 +16,9 @@ public class PlayerScripts : MonoBehaviour
     [SerializeField]
     private float _posRealignment = 0.2f;            //プレイヤーの銃弾の位置調整
 
+    //プレイヤーアニメーション
+    private Animator animator;
+    private bool PlayerLoveBullet_animator;
 
     //入力システム(InputSystem)
     private Distortion_Game _gameInputsSystem;
@@ -55,6 +58,8 @@ public class PlayerScripts : MonoBehaviour
     private GameObject ChoicesgameObj;         //Unity上で作ったGameObjectである名前ChoicesgameObjを入れる変数
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         //インプットシステムを用意して有効化する
         _gameInputsSystem = new Distortion_Game();
         _gameInputsSystem.Enable();
@@ -65,6 +70,8 @@ public class PlayerScripts : MonoBehaviour
         gameObjScore            = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
 
         flashing                = GetComponent<SpriteRenderer>();     //スプライトレンダラーを取得させる
+
+
     }
 
     void Update()
@@ -74,7 +81,7 @@ public class PlayerScripts : MonoBehaviour
 
         //左クリックを押していたら弾を発射するのを呼び出す
         if (_gameInputsSystem.Player.Fire.triggered) InputiateBullet();
-       
+
     }
 
     /// <summary>
@@ -105,6 +112,18 @@ public class PlayerScripts : MonoBehaviour
     {
         //アイテム用SE再生
         SEgameObj.GetComponent<SEScripts>().bulletSE();
+
+        PlayerLoveBullet_animator = true;
+
+        //アニメーション
+        if (PlayerLoveBullet_animator == true)
+        {
+            animator.SetBool("PlayerLoveBullet", true);
+        }
+        else
+        {
+            animator.SetBool("PlayerLoveBullet", false);
+        }
 
         //弾を生成する
         var bullet = Instantiate(_PlayerBulletObject);
@@ -165,6 +184,7 @@ public class PlayerScripts : MonoBehaviour
             {
                 return;
             }
+
             //プレイヤー死ぬ
             Destroy(gameObject);
             //プレイヤーの残機を減らす

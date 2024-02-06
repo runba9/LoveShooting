@@ -173,8 +173,8 @@ public class ShootingSceneManager : MonoBehaviour
 
         //フェード用のキャンバスを出せばフェードインアウトが出来る
 
-        //4秒待つ
-        yield return new WaitForSeconds(4);
+        //1秒待つ
+        yield return new WaitForSeconds(1);
 
         //フェートインアウト処理後ステージ画面に飛ぶ
         SceneManager.LoadScene("ShootingGameSceneStage_Mein");
