@@ -113,17 +113,8 @@ public class PlayerScripts : MonoBehaviour
         //アイテム用SE再生
         SEgameObj.GetComponent<SEScripts>().bulletSE();
 
-        PlayerLoveBullet_animator = true;
-
-        //アニメーション
-        if (PlayerLoveBullet_animator == true)
-        {
-            animator.SetBool("PlayerLoveBullet", true);
-        }
-        else
-        {
-            animator.SetBool("PlayerLoveBullet", false);
-        }
+        //射撃アニメーション
+        animator.SetTrigger("PlayerLoveBullet");
 
         //弾を生成する
         var bullet = Instantiate(_PlayerBulletObject);
@@ -166,6 +157,7 @@ public class PlayerScripts : MonoBehaviour
             //ItemInvincibl(無敵アイテム)コルーチン呼び出し
             StartCoroutine(_ItemInvincible());
         }
+
         //エネミー
         //  当たったオブジェクトがボスからの攻撃(選択肢攻撃)ならば
         if (other.gameObject.tag.Equals("ChoicesBullet"))
@@ -177,6 +169,7 @@ public class PlayerScripts : MonoBehaviour
         //  当たったオブジェクトがエネミーか障害物ならば
         if (other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("Wall"))
         {
+
             gameObjScore.GetComponent<ScoreScripts>().RefreshScoreText();//RefreshScoreText()を実行して加点
 
             //無敵アイテムを既に取得していたら死なない

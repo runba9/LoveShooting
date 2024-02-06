@@ -11,12 +11,13 @@ public class EnemyBoss : MonoBehaviour
     [SerializeField]
     private float _Speed = 3f;                      //エネミーのスピード
     [SerializeField]
-    private int _EnemyBosshp = 30;                  //ボスの体力
+    private int _EnemyBosshp = 100;                 //ボスの体力
     private int Critical;                           //クリティカル攻撃告白
     private int Damage;                             //プレイヤーの通常攻撃
     private bool criticalCount = false;             //クリティカル攻撃告白の有無
     private Slider BossHp_slider;                   //ボスのhpを可視化するためにスライダーで表示
-
+                                                    
+    private Animator animator;                      //アニメーション
     public GameObject[] _choicesBullet;             //攻撃の選択肢とダミーをランダムで出す為ののリスト
 
     private Vector2 pos;                            //座標
@@ -31,7 +32,7 @@ public class EnemyBoss : MonoBehaviour
         SEgameObj           = GameObject.Find("SE");                                      //Unity上で作ったSEを取得
         BossHp_slider       = GameObject.Find("BossHpSlider").GetComponent<Slider>();     //Unity上で作ったBossHpSliderを取得
         _enemyboss          = GetComponent<SpriteRenderer>(); //ボスのスプライトレンダラー取得
-
+        animator = GetComponent<Animator>();                　//アニメーション取得
         //5秒感覚で開けて呼び出しクリティカル攻撃弾を発射させる
         InvokeRepeating("InputiateChoicesbullet", 1.0f, 5.0f);
     }       
@@ -46,7 +47,12 @@ public class EnemyBoss : MonoBehaviour
     {
 
         //現在のボスのhp
-        //Debug.Log("現在hp" + _EnemyBosshp);
+        //Debug.Log("現在hp" + 最大hp);
+        //ボスが半分のダメージを食らったらの処理
+        if (_EnemyBosshp <= 50 )
+        {
+            animator.SetBool("BossLoveMotion", true);
+        }
         //ボスの体力が０か０を超えたらオブジェクト破壊
         if (_EnemyBosshp <= 0 || _EnemyBosshp <= -1)
         {
