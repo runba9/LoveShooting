@@ -2341,7 +2341,7 @@ MonoBehaviour:
   whitestrawberryScoreMax: 0
   blackmintScoreMax: 0
   BossenemyScoreMax: 1
-  life: 100
+  Life: 3
 --- !u!1001 &744800031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4980,7 +4980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6904713231473026111, guid: d7c4e127b1ba01f4db38a089d16b1c9a, type: 3}
       propertyPath: m_Volume
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6904713231473026111, guid: d7c4e127b1ba01f4db38a089d16b1c9a, type: 3}
       propertyPath: m_Enabled

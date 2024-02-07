@@ -102,7 +102,7 @@ public class ShootingSceneManager : MonoBehaviour
         // オブジェクトからTextコンポーネントを取得
         Text score_text = textScore.GetComponent<Text>();
         //画面に貰った数値を表示
-        textScore.text = "TutorialTime : " + timerscore.ToString("00");//ToString("00")＝("F１")同じ、F２で小数点追加など出来る
+        textScore.text = "TutorialTime : " + timerscore.ToString("F1");//ToString("00")＝("F１")同じ、F２で小数点追加など出来る
     }
 
     /// <summary>

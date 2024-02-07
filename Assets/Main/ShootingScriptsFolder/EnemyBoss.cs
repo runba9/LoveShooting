@@ -8,8 +8,10 @@ public class EnemyBoss : MonoBehaviour
     [SerializeField]
     public GameObject _enemy;                       //このボスオブジェを入れる箱
     private SpriteRenderer _enemyboss;              //ボスのスプライトレンダラー用の箱
+
     [SerializeField]
     private float _Speed = 3f;                      //エネミーのスピード
+
     [SerializeField]
     private int _EnemyBosshp = 100;                 //ボスの体力
     private int Critical;                           //クリティカル攻撃告白
@@ -31,8 +33,9 @@ public class EnemyBoss : MonoBehaviour
     {
         SEgameObj           = GameObject.Find("SE");                                      //Unity上で作ったSEを取得
         BossHp_slider       = GameObject.Find("BossHpSlider").GetComponent<Slider>();     //Unity上で作ったBossHpSliderを取得
-        _enemyboss          = GetComponent<SpriteRenderer>(); //ボスのスプライトレンダラー取得
-        animator = GetComponent<Animator>();                　//アニメーション取得
+        _enemyboss          = GetComponent<SpriteRenderer>();                             //ボスのスプライトレンダラー取得
+        animator            = GetComponent<Animator>();                                 　//アニメーション取得
+        
         //5秒感覚で開けて呼び出しクリティカル攻撃弾を発射させる
         InvokeRepeating("InputiateChoicesbullet", 1.0f, 5.0f);
     }       
@@ -51,11 +54,13 @@ public class EnemyBoss : MonoBehaviour
         //ボスが半分のダメージを食らったらの処理
         if (_EnemyBosshp <= 50 )
         {
+            //アニメーション起動
             animator.SetBool("BossLoveMotion", true);
         }
         //ボスの体力が０か０を超えたらオブジェクト破壊
         if (_EnemyBosshp <= 0 || _EnemyBosshp <= -1)
         {
+            //コルーチン
             StartCoroutine(Deadboss());
         }
 
@@ -143,7 +148,7 @@ public class EnemyBoss : MonoBehaviour
 
         //計算処理
         _EnemyBosshp -= Damage;
-        Debug.Log("計算処理後hp" + _EnemyBosshp);
+        //Debug.Log("計算処理後hp" + _EnemyBosshp);
 
         // HPゲージに値を設定
         BossHp_slider.value = _EnemyBosshp;
@@ -190,16 +195,19 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     private IEnumerator Deadboss()
     {
-        yield return new WaitForSeconds(1);
-
-        // 弾が当たった場所に爆発エフェクトを生成する
-        Instantiate(_effectEnemy,transform.localPosition,Quaternion.identity);
 
         //HPが０になったら死ぬ
         _deadCallback?.Invoke();        //メモ：？は_deadCallbackがnullじゃないときに関数を呼び出す
         _enemyboss.enabled = false;     //敵消滅
 
-        yield return new WaitForSeconds(3);
+        // 弾が当たった場所に爆発エフェクトを生成する
+        Instantiate(_effectEnemy,transform.localPosition,Quaternion.identity);
+
+        //0.5秒遅くして
+        Time.timeScale = 0.5f;
+
+        //1.5秒待つ
+        yield return new WaitForSeconds(1.5f);
 
         //フェートインアウト処理後リザルト画面に飛ぶ
         SceneManager.LoadScene("ResultScene");

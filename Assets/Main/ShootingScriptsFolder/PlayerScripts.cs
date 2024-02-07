@@ -18,7 +18,6 @@ public class PlayerScripts : MonoBehaviour
 
     //プレイヤーアニメーション
     private Animator animator;
-    private bool PlayerLoveBullet_animator;
 
     //入力システム(InputSystem)
     private Distortion_Game _gameInputsSystem;
