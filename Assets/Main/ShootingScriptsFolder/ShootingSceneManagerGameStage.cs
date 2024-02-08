@@ -28,6 +28,7 @@ public class ShootingSceneManagerGameStage : MonoBehaviour
     private float _streamPosx = 10;                   //出現座標のうちX座標右固定
     public EnemyBoss _enemyBoss;                      //ボスエネミースクリプトを呼び出す
 
+
     public static ShootingSceneManagerGameStage _shootingSceneManagerGameStage;//どこでもスクリプトを呼び出すため
     void Start()
     {
@@ -122,10 +123,12 @@ public class ShootingSceneManagerGameStage : MonoBehaviour
 
     public void TimeChoicesPanel_On()
     {
-        //時を止める
-        Time.timeScale = 0;
+
         //パネル表示
         _choicesObjPanel.SetActive(true);
+        //時を止める
+        Time.timeScale = 0;
+
     }
 
 }

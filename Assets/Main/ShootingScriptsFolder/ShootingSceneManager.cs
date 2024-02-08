@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
+
 using UnityEngine.SceneManagement;
 
 public class ShootingSceneManager : MonoBehaviour
@@ -22,6 +23,9 @@ public class ShootingSceneManager : MonoBehaviour
     //スコアプレハブ
     [SerializeField]
     public TextMeshProUGUI textScore;               //スコアテキスト
+
+    [SerializeField]
+    public Image PreliminaryFade_inout;        //予備のフェードインアウト
 
     //説明書のリスト
     [SerializeField]
@@ -173,11 +177,13 @@ public class ShootingSceneManager : MonoBehaviour
 
         //フェード用のキャンバスを出せばフェードインアウトが出来る
 
+
         //1秒待つ
         yield return new WaitForSeconds(1);
 
+        //PreliminaryFade_inout.SetActive(true);
+
         //フェートインアウト処理後ステージ画面に飛ぶ
         SceneManager.LoadScene("ShootingGameSceneStage_Mein");
-        //SceneChangr.scenechangrInstance._fade.SceneFade("ShootingGameSceneStage_Mein");
     }
 }

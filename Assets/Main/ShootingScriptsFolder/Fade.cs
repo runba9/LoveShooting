@@ -5,7 +5,6 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class Fade : MonoBehaviour
 {
     // Fadeにかかる時間。
@@ -40,7 +39,7 @@ public class Fade : MonoBehaviour
         //  画面上のFadeCanvasを見えないようにする。
         _fadeCanvas.SetActive(false);
     }
-    
+
     /// <summary>
     ///  画面が暗くなる => シーン遷移 => 画面が明るくなる。
     /// </summary>
@@ -78,12 +77,12 @@ public class Fade : MonoBehaviour
         _canvasGroup.alpha = 1f;
 
         // alpha値が0より大きいとき
-        while(_canvasGroup.alpha > 0f)
+        while (_canvasGroup.alpha > 0f)
         {
             // 毎フレームalpha値を減算
             _canvasGroup.alpha -= Time.deltaTime / FadeTime;
             // もし0より小さくなったら
-            if(_canvasGroup.alpha < 0f)
+            if (_canvasGroup.alpha < 0f)
             {
                 // 0に戻す
                 _canvasGroup.alpha = 0f;

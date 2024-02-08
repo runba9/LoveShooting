@@ -14,7 +14,7 @@ public class ResultScoreManager : MonoBehaviour
     ////デバッグ用
     //[SerializeField]
     //public float TotalScore;
-    /*　メモ
+    /*デバッグ用メモ
      * 上を解除したら下のこれを探してコメントアウト
      
        //スコアと時間を計算
@@ -29,7 +29,7 @@ public class ResultScoreManager : MonoBehaviour
 
         SaveCalculation();
 
-
+        //コルーチン発動させたい場合コメント外して
         //StartCoroutine(Ranking());
 
     }
@@ -61,29 +61,32 @@ public class ResultScoreManager : MonoBehaviour
         TotalScoreText.text = "TotalScore : " + TotalScore.ToString("F1");
 
         //トータルスコア
+        //400を超えると判定はB
         if (TotalScore > 400)
         {
-            RankText.text = "S";
+            RankText.text = "B";
         }
-
+        //400未満200以上は判定A
         else if (TotalScore <= 400 && TotalScore >= 200)
         {
             RankText.text = "A";
         }
+        //少ないほど判定はS
         else if(TotalScore < 200)
         {
-            RankText.text = "B";
+            RankText.text = "S";
         }
 
 
     }
 
+    /*コルーチン使う場合コメント外して
+    private IEnumerator Ranking()
+    {
+        //0.5秒待って
+        yield return new WaitForSeconds(0.5f);
 
-    //private IEnumerator Ranking()
-    //{
-    //    //0.5秒待って
-    //    yield return new WaitForSeconds(0.5f);
-
-    //    RankText.text = "A";
-    //}
+        RankText.text = "A";
+    }
+    */
 }

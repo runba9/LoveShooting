@@ -356,6 +356,7 @@ RectTransform:
   - {fileID: 1907725426}
   - {fileID: 88989351}
   - {fileID: 1599008327}
+  - {fileID: 86669888}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -768,6 +769,82 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85507440}
+  m_CullTransparentMesh: 1
+--- !u!1 &86669887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 86669888}
+  - component: {fileID: 86669890}
+  - component: {fileID: 86669889}
+  m_Layer: 5
+  m_Name: PreliminaryFade_inout
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &86669888
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86669887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 24595550}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &86669889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86669887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &86669890
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86669887}
   m_CullTransparentMesh: 1
 --- !u!1 &88989350
 GameObject:
@@ -1719,7 +1796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9181317208919435215, guid: 5e6c0b8fb7d2f2a47bf3c909f33f7a71, type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e6c0b8fb7d2f2a47bf3c909f33f7a71, type: 3}
@@ -2096,14 +2173,17 @@ MonoBehaviour:
   _PlayerPrefabs: {fileID: 955249702539980742, guid: 893e8ae6ee224dd40b7e9ee07937b2a7, type: 3}
   _PlayerPrefabsScripts: {fileID: 2976402101972982238, guid: 893e8ae6ee224dd40b7e9ee07937b2a7, type: 3}
   textScore: {fileID: 39017184}
+  PreliminaryFade_inout: {fileID: 86669887}
   _instructionManualList:
-  - {fileID: 21300000, guid: 29b00a3c822260c4aa73ced770f35215, type: 3}
-  - {fileID: 21300000, guid: 6e75d181a5bd6a54094b05aa4549f550, type: 3}
   - {fileID: 21300000, guid: 4bb9ccf0c948c9a408b2315ac0dccfbb, type: 3}
   - {fileID: 21300000, guid: b5129839096076a4c83aee1eeee604fe, type: 3}
   - {fileID: 21300000, guid: bf3681ad7268d0f4e9b220518d38dfed, type: 3}
   - {fileID: 21300000, guid: 7aae347720ec2e34c8e8922d515d2b3c, type: 3}
-  _instructionManualListNumber: 5
+  - {fileID: 21300000, guid: db78e391c18e7614d96b141cac86d69f, type: 3}
+  - {fileID: 21300000, guid: ae098f8f319968047b3b3d4b0cf70461, type: 3}
+  - {fileID: 21300000, guid: 6e75d181a5bd6a54094b05aa4549f550, type: 3}
+  - {fileID: 21300000, guid: 97af7936e9c987442b29cf4ec96f2a55, type: 3}
+  _instructionManualListNumber: 7
   _instructionManuaPanel: {fileID: 1907725425}
   ExplainPoint: {fileID: 182783244}
   _nextText: {fileID: 5624156}

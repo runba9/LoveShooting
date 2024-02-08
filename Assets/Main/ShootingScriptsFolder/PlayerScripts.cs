@@ -1,15 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 
 public class PlayerScripts : MonoBehaviour
 {
     //プレイヤー
     [SerializeField]
     private float _PlayerSpeed = 0.6f;               //プレイヤーのスピード
-    
+    [SerializeField]
+    private SpriteRenderer _playerSprite;
+
     //プレイヤーの銃弾
     [SerializeField]
     private GameObject _PlayerBulletObject;          //銃弾のプレハブを入れる
@@ -165,8 +168,8 @@ public class PlayerScripts : MonoBehaviour
             SEgameObj.GetComponent<SEScripts>().ItemSE();
             ChoicesgameObj.GetComponent<ShootingSceneManagerGameStage>().TimeChoicesPanel();
         }
-        //  当たったオブジェクトがエネミーか障害物ならば
-        if (other.gameObject.tag.Equals("Enemy") || other.gameObject.tag.Equals("Wall"))
+        //  当たったオブジェクトがエネミー
+        if (other.gameObject.tag.Equals("Enemy"))
         {
 
             gameObjScore.GetComponent<ScoreScripts>().RefreshScoreText();//RefreshScoreText()を実行して加点
@@ -183,6 +186,18 @@ public class PlayerScripts : MonoBehaviour
             PlayerRemainingLivesObj.GetComponent<ScoreScripts>().PlayerRemainingLivesText();
 
         }
+        // 当たったのが障害物ならば
+        if (other.gameObject.tag.Equals("Wall"))
+        {        
+            //ダメージがコルーチン起動
+            StartCoroutine(PlayerevivalOn());
+
+            //プレイヤー死ぬ
+            Destroy(gameObject);
+            //プレイヤーの残機を減らす
+            PlayerRemainingLivesObj.GetComponent<ScoreScripts>().PlayerRemainingLivesText();
+
+        }
         //  当たったオブジェクトがチュートリアル用エネミーならば
         if (other.gameObject.tag.Equals("Ring"))
         {
@@ -191,6 +206,27 @@ public class PlayerScripts : MonoBehaviour
         }
         
     }
+
+    /// <summary>
+    /// プレイヤー演出
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator PlayerevivalOn()
+    {
+        //ダメージが入ったらオブジェを見えなくさせる
+        _playerSprite.enabled = false;
+        yield return new WaitForSeconds(0.1f); // 0.1秒間待機
+        _playerSprite.enabled = true;
+
+        //0.5秒遅くして
+        Time.timeScale = 0.5f;
+        yield return new WaitForSeconds(0.1f); // 0.1秒間待機
+
+        //時間戻す
+        Time.timeScale = 1f;
+
+    }
+
 
     /// <summary>
     /// 無敵アイテム処理(コルーチン)

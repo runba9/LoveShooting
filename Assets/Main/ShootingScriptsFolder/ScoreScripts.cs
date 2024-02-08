@@ -37,9 +37,12 @@ public class ScoreScripts : MonoBehaviour
     private int Score = 0;                      //現在のスコア
     private float Timerscore = 0;               //経過時間
 
+    [SerializeField]
+    public TextMeshProUGUI Life_expansion;      //回復時に残機数拡大用
+
     //セーブ用データ
-    private const string KEY_SCORE = "SCORE";      //スコア
-    private const string KEY_TIME = "TIME";       //時間
+    private const string KEY_SCORE = "SCORE";   //スコア
+    private const string KEY_TIME = "TIME";     //時間
 
     //呼び出し
     private GameObject SEgameObj;               //Unity上で作ったGameObjectである名前SEを入れる変数
@@ -55,9 +58,11 @@ public class ScoreScripts : MonoBehaviour
 
     public void Start()
     {
-        SEgameObj   = GameObject.Find("SE");              //Unity上で作ったSEを取得
-        BossgameObj = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
-        PlayerObj   = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
+        SEgameObj = GameObject.Find("SE");              //Unity上で作ったSEを取得
+        BossgameObj = GameObject.Find("GameManager");   //Unity上で作ったGameManagerを取得
+        PlayerObj = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
+        // オブジェクトからTextコンポーネントを取得
+        playerRemainingLives.GetComponent<Text>();
     }
 
 
@@ -123,8 +128,7 @@ public class ScoreScripts : MonoBehaviour
 
         //エネミーや障害物などに当たったら残機を減らす
         Life--;
-        // オブジェクトからTextコンポーネントを取得
-        Text Life_text = playerRemainingLives.GetComponent<Text>();
+
         //画面に貰った数値を表示
         playerRemainingLives.text = "×" + Life;
 
@@ -147,13 +151,53 @@ public class ScoreScripts : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// プレイヤーのHP回復
+    /// </summary>
+    public void PlayerLifeExpectancyRestored()
+    {
+        //hpが10（最大数より下だったら）発動
+        if (Life >= 10)
+        {
+            //Debug.Log("最大数なので回復なし");
+        }
+        else
+        {
+            Life++;
+
+            //コルーチン起動
+            StartCoroutine(LifeExpansion());
+
+            //SE再生
+            SEgameObj.GetComponent<SEScripts>().OnClickDiscSe1();
+
+            //Debug.Log("回復");
+            //画面に貰った数値を表示
+            playerRemainingLives.text = "×" + Life;
+
+        }
+
+    }
+
+    /// <summary>
+    /// 命回復演出用
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator LifeExpansion()
+    {
+        Life_expansion.transform.localScale = new Vector3(1,1, 0);
+        yield return new WaitForSeconds(0.2f); // 0.2秒間待機
+        Life_expansion.transform.localScale = new Vector3(2f, 2f, 0);
+        yield return new WaitForSeconds(0.2f); // 0.2秒間待機
+        Life_expansion.transform.localScale = new Vector3(1, 1, 0);
+    }
 
     //ゲームデータをセーブする
     public void SaveGameData()
     {
         PlayerPrefs.SetInt(KEY_SCORE, Score);//スコア
         PlayerPrefs.SetFloat(KEY_TIME, Timerscore);//時間
-        
+
         PlayerPrefs.Save();//保存
     }
 

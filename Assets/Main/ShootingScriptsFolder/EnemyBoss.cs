@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+
 public class EnemyBoss : MonoBehaviour
 {
     [SerializeField]
@@ -62,6 +63,7 @@ public class EnemyBoss : MonoBehaviour
         {
             //コルーチン
             StartCoroutine(Deadboss());
+
         }
 
         //ボスの移動範囲（左右移動）
@@ -136,12 +138,16 @@ public class EnemyBoss : MonoBehaviour
         //フラグがtrueならクリティカル攻撃処理を起動させる
         if (criticalCount == true)
         {
+
+            //ダメージ用SE再生
+            SEgameObj.GetComponent<SEScripts>().damageSE();
+
             //クリティカルダメージ
             Critical = 10;
 
             //計算処理
             _EnemyBosshp -= Critical;
-            Debug.Log("クリティカルhp" + _EnemyBosshp);
+            //Debug.Log("クリティカルhp" + _EnemyBosshp);
             //全て終わったらフラグを戻す
             criticalCount = false;
         }
@@ -166,7 +172,7 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     public void Criticalattack()
     {
-        Debug.Log("呼び出しOK");
+        //Debug.Log("呼び出しOK");
         //クリティカル告白攻撃をtrueにして
         criticalCount = true;
         //攻撃呼び出し
@@ -200,6 +206,9 @@ public class EnemyBoss : MonoBehaviour
         _deadCallback?.Invoke();        //メモ：？は_deadCallbackがnullじゃないときに関数を呼び出す
         _enemyboss.enabled = false;     //敵消滅
 
+        //プレイヤー攻撃時用SE再生でやられた感を演出
+        SEgameObj.GetComponent<SEScripts>().playerSE();
+
         // 弾が当たった場所に爆発エフェクトを生成する
         Instantiate(_effectEnemy,transform.localPosition,Quaternion.identity);
 
@@ -209,9 +218,11 @@ public class EnemyBoss : MonoBehaviour
         //1.5秒待つ
         yield return new WaitForSeconds(1.5f);
 
-        //フェートインアウト処理後リザルト画面に飛ぶ
+        //0.5秒遅くして
+        Time.timeScale = 1f;
+
+        //リザルト画面に飛ぶ
         SceneManager.LoadScene("ResultScene");
-        //SceneChangr.scenechangrInstance._fade.SceneFade("ResultScene");
 
     }
 

@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemytracingScripts : MonoBehaviour
 {
     [SerializeField]
-    private float _Speed = 10f;             //エネミーのスピード
+    private float _Speed;                   //エネミーのスピード
 
-    Transform playerTransform;            //プレイヤーの座標Transform
-    private GameObject playerObj;          //Unity上で作ったGameObjectである名前playerObjを入れる変数
+    Transform playerTransform;              //プレイヤーの座標Transform
+    private GameObject playerObj;           //Unity上で作ったGameObjectである名前playerObjを入れる変数
 
     public EffectScripts _effectEnemy;      //爆発エフェクトのプレハブ
     private System.Action _deadCallback;    //死んだときに死んだことを伝える
@@ -46,11 +46,11 @@ public class EnemytracingScripts : MonoBehaviour
             // プレイヤーとの距離が5未満になったら
             if (Vector2.Distance(this.transform.position, playerTransform.position) <= 5f)
             {
-                transform.position = Vector2.MoveTowards(transform.position, playerTransform.transform.position, _Speed * Time.deltaTime);
+                transform.position = Vector2.Lerp(transform.position, playerTransform.transform.position, _Speed * Time.deltaTime);
+                //transform.position = Vector2.MoveTowards(transform.position, playerTransform.transform.position, _Speed * Time.deltaTime);
             }
             else 
             {
-                
             }
 
         }

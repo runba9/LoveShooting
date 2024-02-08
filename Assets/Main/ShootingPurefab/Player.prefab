@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _PlayerSpeed: 10
+  _playerSprite: {fileID: 9053807689780416536}
   _PlayerBulletObject: {fileID: 2152324240547314129, guid: f795ee74c3f9aa6499429a3b568444c6, type: 3}
   _posRealignment: 0.2
   _minX: -9

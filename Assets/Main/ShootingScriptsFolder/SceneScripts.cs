@@ -13,6 +13,8 @@ public class SceneScripts : MonoBehaviour
     //ゲームチュートリアルシーンに移動
     public void Scene_tutorialGame()
     {
+        // 保存されているすべてのデータを消す
+        PlayerPrefs.DeleteAll();
         SceneChangr.scenechangrInstance._fade.SceneFade("ShootingGameScene");
     }
 
