@@ -85,9 +85,6 @@ public class EnemyBoss : MonoBehaviour
     /// </summary>
     private void InputiateChoicesbullet()
     {
-        //アイテム用SE再生
-        SEgameObj.GetComponent<SEScripts>().bulletSE();
-
         //リスト化したものをランダムで出力していく、下のメモの簡易バージョン
         var Choicesbullet = Random.Range(0, _choicesBullet.Length);
         Instantiate(_choicesBullet[Choicesbullet], transform.position, transform.rotation);
@@ -139,8 +136,8 @@ public class EnemyBoss : MonoBehaviour
         if (criticalCount == true)
         {
 
-            //ダメージ用SE再生
-            SEgameObj.GetComponent<SEScripts>().damageSE();
+            //アイテム用SE再生
+            SEgameObj.GetComponent<SEScripts>().OnClickDiscSe1();
 
             //クリティカルダメージ
             Critical = 10;
@@ -180,6 +177,7 @@ public class EnemyBoss : MonoBehaviour
     }
 
 
+
     /// <summary>
     /// 攻撃したオブジェを0.1秒後に呼び出す演出コルーチン
     /// </summary>
@@ -195,6 +193,7 @@ public class EnemyBoss : MonoBehaviour
          */
 
     }
+
 
     /// <summary>
     /// ボスの死んだ処理
@@ -212,18 +211,22 @@ public class EnemyBoss : MonoBehaviour
         // 弾が当たった場所に爆発エフェクトを生成する
         Instantiate(_effectEnemy,transform.localPosition,Quaternion.identity);
 
-        //0.5秒遅くして
-        Time.timeScale = 0.5f;
+        //0.7秒遅くして
+        Time.timeScale = 0.7f;
 
-        //1.5秒待つ
-        yield return new WaitForSeconds(1.5f);
+        //0.5秒待つ
+        yield return new WaitForSeconds(0.5f);
 
-        //0.5秒遅くして
+        //時間を元に戻す
         Time.timeScale = 1f;
+
+
+        //1秒待つ
+        yield return new WaitForSeconds(1f);
+        
 
         //リザルト画面に飛ぶ
         SceneManager.LoadScene("ResultScene");
-
     }
 
 }

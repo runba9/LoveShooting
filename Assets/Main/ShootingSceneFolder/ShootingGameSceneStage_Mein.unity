@@ -748,7 +748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -275, y: 510}
+  m_AnchoredPosition: {x: -200, y: 510}
   m_SizeDelta: {x: 900, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &279280656
@@ -923,7 +923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9181317208919435215, guid: 5e6c0b8fb7d2f2a47bf3c909f33f7a71, type: 3}
       propertyPath: m_Volume
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e6c0b8fb7d2f2a47bf3c909f33f7a71, type: 3}
@@ -1182,7 +1182,7 @@ SpriteRenderer:
   m_Size: {x: 3.64, y: 1.97}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &417018935
@@ -2413,9 +2413,9 @@ MonoBehaviour:
   _bossHpSlider: {fileID: 4283509338087694237}
   blackmint: {fileID: 569857064}
   whitestrawberry: {fileID: 430026035}
-  whitestrawberryScoreMax: 20
-  blackmintScoreMax: 50
-  BossenemyScoreMax: 100
+  whitestrawberryScoreMax: 30
+  blackmintScoreMax: 70
+  BossenemyScoreMax: 110
   Life: 10
   Life_expansion: {fileID: 1367947939}
 --- !u!1001 &744800031
@@ -5699,7 +5699,7 @@ SpriteRenderer:
   m_Size: {x: 3.64, y: 1.97}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1764318692
@@ -6078,7 +6078,7 @@ GameObject:
   - component: {fileID: 1882304566}
   - component: {fileID: 1882304565}
   m_Layer: 5
-  m_Name: TimerText
+  m_Name: TimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6101,7 +6101,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -270, y: 450}
+  m_AnchoredPosition: {x: -200, y: 450}
   m_SizeDelta: {x: 900, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1882304565
@@ -6124,7 +6124,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Timer        :'
+  m_text: 'Time         :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -60,19 +60,19 @@ public class ResultScoreManager : MonoBehaviour
         //トータルスコアとして出力
         TotalScoreText.text = "TotalScore : " + TotalScore.ToString("F1");
 
-        //トータルスコア
+        //トータルスコアが
         //400を超えると判定はB
         if (TotalScore > 400)
         {
             RankText.text = "B";
         }
-        //400未満200以上は判定A
-        else if (TotalScore <= 400 && TotalScore >= 200)
+        //400未満290以上は判定A
+        else if (TotalScore <= 400 && TotalScore <= 290)
         {
             RankText.text = "A";
         }
-        //少ないほど判定はS
-        else if(TotalScore < 200)
+        //200以下は判定S
+        else if(TotalScore < 290)
         {
             RankText.text = "S";
         }

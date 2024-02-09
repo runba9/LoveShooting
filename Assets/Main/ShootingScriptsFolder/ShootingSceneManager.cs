@@ -11,21 +11,26 @@ public class ShootingSceneManager : MonoBehaviour
     //エネミーのプレハブ
     [SerializeField]
     private GameObject _enemyPrefabs;
-    //アイテムのプレハブ
-    [SerializeField]
-    private GameObject _ItemPrefabs;
-    //アイテムのプレハブ
+    //プレイヤーのプレハブ
     [SerializeField]
     private GameObject _PlayerPrefabs;
-    //プレイヤーのプレハブ
+    //プレイヤーのスクリプト
     [SerializeField]
     private PlayerScripts _PlayerPrefabsScripts;
     //スコアプレハブ
     [SerializeField]
     public TextMeshProUGUI textScore;               //スコアテキスト
 
+    /*
     [SerializeField]
-    public Image PreliminaryFade_inout;        //予備のフェードインアウト
+    //public SpriteRenderer PreliminaryFade_inout;        //予備のフェードインアウト
+                                                        //透明度が変わるスピード
+    float fadeSpeed = 0.75f;
+    //画面をフェードさせるための画像をパブリックで取得
+    public Image fadeImage;
+    float red, green, blue, alfa;
+
+    */
 
     //説明書のリスト
     [SerializeField]
@@ -95,9 +100,43 @@ public class ShootingSceneManager : MonoBehaviour
         timerscore -= Time.deltaTime;
         if (timerscore <= 0)
         {
-            StartCoroutine(MovingScene());//シーン移動
+            
+            timerscore = 0;
+
+            StartCoroutine(Fade());
+
         }
 
+    }
+
+    private IEnumerator Fade()
+    {
+        //時をゆっくりにして
+        Time.timeScale = 0.5f;
+
+        /*
+        //不透明度を徐々に上げる
+        alfa += fadeSpeed * Time.deltaTime;
+        //変更した透明度を画像に反映させる関数を呼ぶ
+        fadeImage.color = new Color(red, green, blue, alfa);
+        if (alfa >= 1)
+        {
+            //フェートインアウト処理後ステージ画面に飛ぶ
+            SceneManager.LoadScene("ShootingGameSceneStage_Mein");
+            //時を戻す
+            Time.timeScale = 1f;
+        }
+        */
+
+        // 1秒待機
+        yield return new WaitForSeconds(1);
+
+        //フェートインアウト処理後ステージ画面に飛ぶ
+        SceneManager.LoadScene("ShootingGameSceneStage_Mein");
+
+
+       // 時を戻す
+        Time.timeScale = 1f;
     }
 
     //スコアテキスト更新
@@ -127,7 +166,7 @@ public class ShootingSceneManager : MonoBehaviour
 
     }
 
-    //エネミーとアイテムが右から左へ横からプレハブでランダムに出す
+    //エネミーが右から左へ横からプレハブでランダムに出す
     private void InstantiateEnemy()
     {
         //エネミー
@@ -170,20 +209,6 @@ public class ShootingSceneManager : MonoBehaviour
         Instantiate(_PlayerPrefabs, new Vector3(-7, 0, 0), Quaternion.identity);
     }
 
-    //シーン移動
-    private IEnumerator MovingScene()
-    {
-        timerscore = 0;     //時間をリセット
-
-        //フェード用のキャンバスを出せばフェードインアウトが出来る
 
 
-        //1秒待つ
-        yield return new WaitForSeconds(1);
-
-        //PreliminaryFade_inout.SetActive(true);
-
-        //フェートインアウト処理後ステージ画面に飛ぶ
-        SceneManager.LoadScene("ShootingGameSceneStage_Mein");
-    }
 }

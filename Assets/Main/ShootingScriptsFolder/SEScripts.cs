@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+
 
 // "AudioSource"コンポーネントがアタッチされていない場合アタッチ
 [RequireComponent(typeof(AudioSource))]
@@ -46,8 +44,6 @@ public class SEScripts : MonoBehaviour
     private void Update()
     {
 
-        //シーン移動してもデータ保存され、鳴り続ける
-        DontDestroyOnLoad(this);
     }
 
 
@@ -95,6 +91,7 @@ public class SEScripts : MonoBehaviour
     {
         // 音楽の音量をスライドバーの値に変更
         audioSource.volume = newSliderValue;
+
     }
 
 }

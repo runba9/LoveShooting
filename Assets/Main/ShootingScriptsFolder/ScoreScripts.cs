@@ -49,7 +49,6 @@ public class ScoreScripts : MonoBehaviour
     private GameObject PlayerObj;               //Unity上で作ったGameObjectである名前PlayerObjを入れる変数
     private GameObject BossgameObj;             //Unity上で作ったGameObjectである名前GameManagerを入れる変数
     public static ScoreScripts _scoreScripts;   //どこでもスクリプトを呼び出すため
-
     public void Awake()
     {
         // 保存されているすべてのデータを消す
@@ -191,6 +190,8 @@ public class ScoreScripts : MonoBehaviour
         yield return new WaitForSeconds(0.2f); // 0.2秒間待機
         Life_expansion.transform.localScale = new Vector3(1, 1, 0);
     }
+
+
 
     //ゲームデータをセーブする
     public void SaveGameData()
