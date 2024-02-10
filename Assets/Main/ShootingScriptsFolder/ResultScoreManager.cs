@@ -71,7 +71,7 @@ public class ResultScoreManager : MonoBehaviour
         {
             RankText.text = "A";
         }
-        //200ˆÈ‰º‚Í”»’èS
+        //290‰º‰ñ‚é‚Æ”»’èS
         else if(TotalScore < 290)
         {
             RankText.text = "S";
