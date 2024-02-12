@@ -1081,7 +1081,7 @@ MonoBehaviour:
   TextScore: {fileID: 324650251}
   TotalScoreText: {fileID: 740237496}
   RankText: {fileID: 2135839682}
-  TotalScore: 100
+  TotalScore: -1
 --- !u!4 &1011650214
 Transform:
   m_ObjectHideFlags: 0

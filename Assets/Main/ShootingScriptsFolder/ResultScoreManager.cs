@@ -67,12 +67,12 @@ public class ResultScoreManager : MonoBehaviour
             RankText.text = "B";
         }
         //400ñ¢ñû290à»è„ÇÕîªíËA
-        else if (TotalScore <= 400 && TotalScore <= 290)
+        if (TotalScore <= 400 || TotalScore <= 290)
         {
             RankText.text = "A";
         }
         //290â∫âÒÇÈÇ∆îªíËS
-        else if(TotalScore < 290)
+        if(TotalScore < 290)
         {
             RankText.text = "S";
         }
