@@ -188,7 +188,13 @@ public class PlayerScripts : MonoBehaviour
         }
         // 当たったのが障害物ならば
         if (other.gameObject.tag.Equals("Wall"))
-        {        
+        {
+            //無敵アイテムを既に取得していたら死なない
+            if (ItemInvincibleisGetHit)
+            {
+                return;
+            }
+
             //ダメージがコルーチン起動
             StartCoroutine(PlayerevivalOn());
 

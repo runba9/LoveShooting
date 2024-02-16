@@ -1081,7 +1081,6 @@ MonoBehaviour:
   TextScore: {fileID: 324650251}
   TotalScoreText: {fileID: 740237496}
   RankText: {fileID: 2135839682}
-  TotalScore: -1
 --- !u!4 &1011650214
 Transform:
   m_ObjectHideFlags: 0
@@ -1852,7 +1851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6904713231473026111, guid: d7c4e127b1ba01f4db38a089d16b1c9a, type: 3}
       propertyPath: m_Volume
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6904713231473026111, guid: d7c4e127b1ba01f4db38a089d16b1c9a, type: 3}
       propertyPath: m_audioClip
