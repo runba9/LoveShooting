@@ -11,7 +11,9 @@ public class PlayerScripts : MonoBehaviour
     [SerializeField]
     private float _PlayerSpeed = 0.6f;               //プレイヤーのスピード
     [SerializeField]
-    private SpriteRenderer _playerSprite;
+    private SpriteRenderer _playerSprite;            //スプライトレンダラー
+    [SerializeField]
+    public BoxCollider2D _playerBoxCollider2d;       //ボックスコライダー２D
 
     //プレイヤーの銃弾
     [SerializeField]
@@ -51,17 +53,21 @@ public class PlayerScripts : MonoBehaviour
     public bool ItemInvincibleisGetHit;               //無敵アイテム取得してるのかの判定
     SpriteRenderer flashing;                          //点滅させるためのSpriteRenderer
 
+    //死んでからの無敵時間
+    private float ZombieTime;                         //死んでる間の時間
+    private bool  AliveOrDead;                        //生きてるのか死んでるのかの判定
+
     //プレイヤーの残機呼び出し
-    private GameObject PlayerRemainingLivesObj;//Unity上で作ったGameObjectである名前PlayerRemainingLivesObjを入れる変数
+    private GameObject PlayerRemainingLivesObj;       //Unity上で作ったGameObjectである名前PlayerRemainingLivesObjを入れる変数
     //SE呼び出し
-    private GameObject SEgameObj;              //Unity上で作ったGameObjectである名前SEを入れる変数
-    private GameObject gameObjScore;           //Unity上で作ったGameObjectである名前gameObjScoreを入れる変数
+    private GameObject SEgameObj;                     //Unity上で作ったGameObjectである名前SEを入れる変数
+    private GameObject gameObjScore;                  //Unity上で作ったGameObjectである名前gameObjScoreを入れる変数
     //ボスの攻撃（選択肢攻撃）呼び出し
-    private GameObject ChoicesgameObj;         //Unity上で作ったGameObjectである名前ChoicesgameObjを入れる変数
+    private GameObject ChoicesgameObj;                //Unity上で作ったGameObjectである名前ChoicesgameObjを入れる変数
+
+    public static PlayerScripts _playerScripts;//どこでもスクリプトを呼び出すため
     void Start()
     {
-        animator = GetComponent<Animator>();
-
         //インプットシステムを用意して有効化する
         _gameInputsSystem = new Distortion_Game();
         _gameInputsSystem.Enable();
@@ -71,8 +77,13 @@ public class PlayerScripts : MonoBehaviour
         PlayerRemainingLivesObj = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
         gameObjScore            = GameObject.Find("GameManager");     //Unity上で作ったGameManagerを取得
 
+        animator                = GetComponent<Animator>();           //アニメーション取得
         flashing                = GetComponent<SpriteRenderer>();     //スプライトレンダラーを取得させる
+        _playerBoxCollider2d    = GetComponent<BoxCollider2D>();      //ボックスコライダー２Dを取得させる
 
+        //プレイヤーが死んで、復活した時の無敵時間処理
+        AliveOrDead = false;                                          //無敵時間を閉じとく
+        _playerBoxCollider2d.enabled = true;                        　//一応ボックスコライダー２Dのチェックを入れておく
 
     }
 
@@ -232,7 +243,43 @@ public class PlayerScripts : MonoBehaviour
         Time.timeScale = 1f;
 
     }
+    
+    /// <summary>
+    /// 復活するまでのプレイヤー無敵時間
+    /// </summary>
+    public void InvincibilityTimeBetweenRevivals()
+    {       
+        StartCoroutine(InvincibilityTimeBetweenRevivals_coroutine());
+    }
 
+    /// <summary>
+    /// プレイヤーの無敵時間
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator InvincibilityTimeBetweenRevivals_coroutine()
+    {
+        //当たりフラグをtrueに変更（当たっている状態）
+        ItemInvincibleisGetHit = true;
+        //Debug.Log("取得");
+        //点滅ループ開始
+        for (int i = 0; i < 3; i++)
+        {
+            //flashInterval待ってから
+            yield return new WaitForSeconds(flashInterval);
+            //spriteRenderer(点滅)をオフ
+            flashing.enabled = false;
+
+            //flashInterval待ってから
+            yield return new WaitForSeconds(flashInterval);
+            //spriteRenderer(点滅)をオン
+            flashing.enabled = true;
+            //Debug.Log("ループ中");
+        }
+
+        //点滅ループが抜けたら当たりフラグをfalse(当たってない状態)
+        ItemInvincibleisGetHit = false;
+        //Debug.Log("終わった");
+    }
 
     /// <summary>
     /// 無敵アイテム処理(コルーチン)

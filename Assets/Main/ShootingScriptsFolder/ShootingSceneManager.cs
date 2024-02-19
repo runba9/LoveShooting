@@ -21,17 +21,6 @@ public class ShootingSceneManager : MonoBehaviour
     [SerializeField]
     public TextMeshProUGUI textScore;               //スコアテキスト
 
-    /*
-    [SerializeField]
-    //public SpriteRenderer PreliminaryFade_inout;        //予備のフェードインアウト
-                                                        //透明度が変わるスピード
-    float fadeSpeed = 0.75f;
-    //画面をフェードさせるための画像をパブリックで取得
-    public Image fadeImage;
-    float red, green, blue, alfa;
-
-    */
-
     //説明書のリスト
     [SerializeField]
     private List<Sprite> _instructionManualList;    //変えたい画像のリスト(説明書)
@@ -173,7 +162,7 @@ public class ShootingSceneManager : MonoBehaviour
         if (Random.Range(0, 2) == 0)
         {
             var item = Instantiate(_enemyPrefabs);
-            item.transform.position = new Vector3(_enemuLeftPos, Random.Range(-5, 5f), 0);
+            item.transform.position = new Vector3(_enemuLeftPos, Random.Range(-4, 4f), 0);
         }
     }
 

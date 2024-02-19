@@ -38,21 +38,23 @@ public class EnemyScripts : MonoBehaviour
     //敵消滅
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //弾かプレイヤーがエネミーに当たったら
-        if(collision.gameObject.tag.Equals("Bullet") || collision.gameObject.tag.Equals("Player"))
+        //弾かプレイヤー,ガードアイテムがエネミーに当たったら
+        if(collision.gameObject.tag.Equals("Bullet") || collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("Option"))
         {
             //ダメージ用SE再生
             SEgameObj.GetComponent<SEScripts>().damageSE();
 
             // 弾が当たった場所に爆発エフェクトを生成する
             Instantiate(
-                _effectEnemy,
-                collision.transform.localPosition,
-                Quaternion.identity);
+                _effectEnemy,collision.transform.localPosition,Quaternion.identity);
 
             _deadCallback?.Invoke();  //メモ：？は_deadCallbackがnullじゃないときに関数を呼び出す
-                                      //敵消滅
-            Destroy(gameObject);
+
+            //重力を与えて落下させる
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 10;
+
+            //敵消滅
+            //Destroy(gameObject);
         }
 
     }

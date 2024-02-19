@@ -6,9 +6,9 @@ public class EnemytracingScripts : MonoBehaviour
 {
     [SerializeField]
     private float _Speed;                   //エネミーのスピード
+    private bool EnemyThrobbing;            //死んだら追いかける機能無くす為の判定
 
-    Transform playerTransform;              //プレイヤーの座標Transform
-    private GameObject playerObj;           //Unity上で作ったGameObjectである名前playerObjを入れる変数
+    Transform playerTransform;              //プレイヤー（追いかけたい対象）の座標Transform
 
     public EffectScripts _effectEnemy;      //爆発エフェクトのプレハブ
     private System.Action _deadCallback;    //死んだときに死んだことを伝える
@@ -21,6 +21,7 @@ public class EnemytracingScripts : MonoBehaviour
     {
         SEgameObj = GameObject.Find("SE");//Unity上で作ったSEを取得
 
+        EnemyThrobbing = true;            //エネミー生きている判定
     }
     public void SetUp(float speed = 6, System.Action deadCallback = null)
     {
@@ -41,17 +42,22 @@ public class EnemytracingScripts : MonoBehaviour
         {
             //Debug.Log("オブジェクト名が見つかりました：" + playerObj.name);
 
-            //プレイヤーの座標を見つけて追いかける行動開始
-            playerTransform = playerObj.transform;
-            // プレイヤーとの距離が5未満になったら
-            if (Vector2.Distance(this.transform.position, playerTransform.position) <= 5f)
+            //エネミー生きてる判定
+            if(EnemyThrobbing == true)
             {
-                transform.position = Vector2.Lerp(transform.position, playerTransform.transform.position, _Speed * Time.deltaTime);
-                //transform.position = Vector2.MoveTowards(transform.position, playerTransform.transform.position, _Speed * Time.deltaTime);
+                //プレイヤーの座標を見つけて追いかける行動開始
+                playerTransform = playerObj.transform;
+                // プレイヤーとの距離が5未満になったら
+                if (Vector2.Distance(this.transform.position, playerTransform.position) <= 5f)
+                {
+                    transform.position = Vector2.Lerp(transform.position, playerTransform.transform.position, _Speed * Time.deltaTime);
+                    //transform.position = Vector2.MoveTowards(transform.position, playerTransform.transform.position, _Speed * Time.deltaTime);
+                }
+                else 
+                {
+                }
             }
-            else 
-            {
-            }
+
 
         }
         // ゲームオブジェクトが存在しなかったらログを出す
@@ -62,29 +68,33 @@ public class EnemytracingScripts : MonoBehaviour
 
         //画面外に出たらエネミー死ぬ
         if (transform.position.x < -Screen.width / _screenRatio)
-                Destroy(gameObject);
+        Destroy(gameObject);
         }
 
         //敵消滅
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            //弾がエネミーに当たったら
-            if (collision.gameObject.tag.Equals("Bullet") || collision.gameObject.tag.Equals("Player"))
+            //弾,プレイヤー、ガードアイテムがエネミーに当たったら
+            if (collision.gameObject.tag.Equals("Bullet") || collision.gameObject.tag.Equals("Player") || collision.gameObject.tag.Equals("Option"))
             {
+                //エネミー死んだ判定
+                EnemyThrobbing = false;
+
                 //ダメージ用SE再生
                 SEgameObj.GetComponent<SEScripts>().damageSE();
 
                 // 弾が当たった場所に爆発エフェクトを生成する
-                Instantiate(
-                    _effectEnemy,
-                    collision.transform.localPosition,
-                    Quaternion.identity);
+                Instantiate(_effectEnemy,collision.transform.localPosition,Quaternion.identity);
 
                 _deadCallback?.Invoke();  //メモ：？は_deadCallbackがnullじゃないときに関数を呼び出す
-                                          //敵消滅
-                Destroy(gameObject);
-            }
+   
+                //重力を与えて落下させる
+                gameObject.GetComponent<Rigidbody2D>().gravityScale = 10;
 
+                //敵消滅
+                //Destroy(gameObject);
         }
+
+    }
 
     } 
