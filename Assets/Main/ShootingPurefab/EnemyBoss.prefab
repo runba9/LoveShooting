@@ -132,7 +132,7 @@ MonoBehaviour:
   - {fileID: 2152324240547314129, guid: a3fb7791e6ef7cf46a59c83b1e65aac1, type: 3}
   - {fileID: 2152324240547314129, guid: 83c460e4d70a7504fa16f5cb768037c7, type: 3}
   _enemyBoss: 1
-  _effectEnemy: {fileID: -8327687947384262712, guid: ef8f4e396b9404c499e5a18db65a9690, type: 3}
+  _effectEnemy: {fileID: 7034564452649626956, guid: 513b1209a9201d6448c0f3b625e6b0f3, type: 3}
 --- !u!95 &8718286108538531379
 Animator:
   serializedVersion: 5

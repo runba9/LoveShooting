@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Speed: 7
-  _effectEnemy: {fileID: -8327687947384262712, guid: ef8f4e396b9404c499e5a18db65a9690, type: 3}
+  _effectEnemy: {fileID: 7034564452649626956, guid: 513b1209a9201d6448c0f3b625e6b0f3, type: 3}
 --- !u!95 &4789849931336801932
 Animator:
   serializedVersion: 5

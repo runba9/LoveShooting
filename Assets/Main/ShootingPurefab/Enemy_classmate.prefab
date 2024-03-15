@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _CatEnemy: {fileID: 2322142621380727727}
+  _effectEnemy: {fileID: 7034564452649626956, guid: 513b1209a9201d6448c0f3b625e6b0f3, type: 3}
   _blackLoveBullet: {fileID: 2152324240547314129, guid: 09bc17b5f37d03b46b6c6ca79643e119, type: 3}
   _Speed: 1
 --- !u!61 &2322142621380727725

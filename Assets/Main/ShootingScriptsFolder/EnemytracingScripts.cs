@@ -9,7 +9,8 @@ public class EnemytracingScripts : MonoBehaviour
     private bool EnemyThrobbing;            //死んだら追いかける機能無くす為の判定
 
     Transform playerTransform;              //プレイヤー（追いかけたい対象）の座標Transform
-
+    [SerializeField]
+    private float Acceleration_speed = 5;                    //プレイヤーの座標を見つけて追いかけるスピード
     public EffectScripts _effectEnemy;      //爆発エフェクトのプレハブ
     private System.Action _deadCallback;    //死んだときに死んだことを伝える
     private GameObject SEgameObj;           //Unity上で作ったGameObjectである名前SEを入れる変数
@@ -47,11 +48,11 @@ public class EnemytracingScripts : MonoBehaviour
             {
                 //プレイヤーの座標を見つけて追いかける行動開始
                 playerTransform = playerObj.transform;
-                // プレイヤーとの距離が5未満になったら
-                if (Vector2.Distance(this.transform.position, playerTransform.position) <= 5f)
+                // プレイヤーとの距離がAcceleration_speed未満になったら
+                if (Vector2.Distance(this.transform.position, playerTransform.position) <= Acceleration_speed)
                 {
                     transform.position = Vector2.Lerp(transform.position, playerTransform.transform.position, _Speed * Time.deltaTime);
-                    //transform.position = Vector2.MoveTowards(transform.position, playerTransform.transform.position, _Speed * Time.deltaTime);
+                    
                 }
                 else 
                 {

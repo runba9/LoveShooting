@@ -6,6 +6,9 @@ public class EnemyFixationCatScripts : MonoBehaviour
 {
     [SerializeField]
     public GameObject _CatEnemy;                  //このオブジェを入れる箱
+
+    [SerializeField]
+    public EffectScripts _effectEnemy;            //爆発エフェクトのプレハブ
     [SerializeField]
     private GameObject _blackLoveBullet;          //攻撃用の箱           
     [SerializeField]
@@ -52,6 +55,9 @@ public class EnemyFixationCatScripts : MonoBehaviour
         {
             //ダメージ用SE再生
             SEgameObj.GetComponent<SEScripts>().damageSE();
+            
+            // 弾が当たった場所に爆発エフェクトを生成する
+            Instantiate(_effectEnemy, other.transform.localPosition, Quaternion.identity);
 
             //重力を与えて落下させる
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 10;
